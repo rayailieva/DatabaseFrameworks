@@ -24,38 +24,41 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="soft_uni/Hibernate" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="soft_uni/Hibernate" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="soft_uni: schema" type="c314c289:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="soft_uni/Hibernate" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="soft_uni: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="towns: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Engine.java" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="68" lean-forward="true" selection-start-line="65" selection-start-column="1" selection-end-line="68" />
+            <state relative-caret-position="483">
+              <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#removeObjects#0;class#Engine#0" />
+                <element signature="method#containsEmployee#0;class#Engine#0" />
+                <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
+                <element signature="method#employeesFromDepartment#0;class#Engine#0" />
+                <element signature="method#employeeCount#0;class#Engine#0" />
+                <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
+                <element signature="method#findLatestProjects#0;class#Engine#0" />
+                <element signature="method#increaseSalary#0;class#Engine#0" />
+                <element signature="method#removeTowns#0;class#Engine#0" />
+                <element signature="method#findEmployees#0;class#Engine#0" />
+                <element signature="method#getMaximumSalaries#0;class#Engine#0" />
               </folding>
             </state>
           </provider>
@@ -77,9 +80,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d84ab33c-6f1c-4f28-b959-2341953aaeae/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/RemoveObjects.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/74108b6f-d696-48d4-96eb-3ea7bb5f355e/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2829575b-ae9f-4a0e-8fd2-96d947d78276/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Engine.java" />
       </list>
     </option>
@@ -120,61 +124,20 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="introduction-to-hibernate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="06. DB-Advanced-Introduction-to-Hibernate-Skeleton" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="introduction-to-hibernate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="06. DB-Advanced-Introduction-to-Hibernate-Skeleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="introduction-to-hibernate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="06. DB-Advanced-Introduction-to-Hibernate-Skeleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="introduction-to-hibernate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="06. DB-Advanced-Introduction-to-Hibernate-Skeleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="introduction-to-hibernate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="06. DB-Advanced-Introduction-to-Hibernate-Skeleton" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mysql-connector-java-5.1.47" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/04. DB-Advanced-Introduction-to-Hibernate-Exercise-Skeleton/softuni_database.sql" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -191,8 +154,8 @@
   <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application" />
-      <module name="introduction-to-hibernate" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <module name="04.IntroductionToHibernate" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
     </configuration>
     <configuration name="RemoveObjects" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RemoveObjects" />
@@ -264,11 +227,14 @@
       <workItem from="1541268473376" duration="3020000" />
       <workItem from="1541274650935" duration="689000" />
       <workItem from="1541278916244" duration="2329000" />
+      <workItem from="1541354742630" duration="2577000" />
+      <workItem from="1541357575268" duration="3294000" />
+      <workItem from="1541361283737" duration="740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6038000" />
+    <option name="totallyTimeSpent" value="12649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -283,38 +249,72 @@
     <frame x="644" y="0" width="900" height="848" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50201344" side_tool="true" weight="0.94017094" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.3295302" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="CDI" order="3" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50201344" side_tool="true" weight="0.9396067" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.3295302" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="right" id="CDI" order="5" />
+      <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" weight="0.35595238" />
+      <window_info anchor="right" id="Database" order="6" weight="0.36190477" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286517" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32763532" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.28370786" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286517" />
-      <window_info id="Persistence" order="3" side_tool="true" weight="0.3297619" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32905984" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.32619047" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.3272472" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.61376405" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286517" />
+      <window_info id="Persistence" order="6" side_tool="true" weight="0.3297619" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3261745" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.33333334" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Persistence" order="6" side_tool="true" weight="0.3297619" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.42592594" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286517" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="CDI" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50201344" side_tool="true" weight="0.94017094" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32763532" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.3295302" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3261745" />
+      <window_info active="true" anchor="right" id="Database" order="6" visible="true" weight="0.20469798" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286517" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -322,99 +322,70 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="966">
+          <caret line="154" column="26" lean-forward="true" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#removeObjects#0;class#Engine#0" />
+            <element signature="method#containsEmployee#0;class#Engine#0" />
+            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
+            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
+            <element signature="method#employeeCount#0;class#Engine#0" />
+            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
+            <element signature="method#findLatestProjects#0;class#Engine#0" />
+            <element signature="method#increaseSalary#0;class#Engine#0" />
+            <element signature="method#removeTowns#0;class#Engine#0" />
+            <element signature="method#findEmployees#0;class#Engine#0" />
+            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="315">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#removeObjects#0;class#Engine#0" />
+            <element signature="method#containsEmployee#0;class#Engine#0" />
+            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
+            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
+            <element signature="method#employeeCount#0;class#Engine#0" />
+            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
+            <element signature="method#findLatestProjects#0;class#Engine#0" />
+            <element signature="method#increaseSalary#0;class#Engine#0" />
+            <element signature="method#removeTowns#0;class#Engine#0" />
+            <element signature="method#findEmployees#0;class#Engine#0" />
+            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/74108b6f-d696-48d4-96eb-3ea7bb5f355e/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="6342">
+          <caret line="302" column="72" lean-forward="true" selection-start-line="302" selection-start-column="72" selection-end-line="302" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Department.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/entities/Engine.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Project.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d84ab33c-6f1c-4f28-b959-2341953aaeae/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1631">
@@ -426,13 +397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="1579" column="12" lean-forward="true" selection-start-line="1579" selection-start-column="12" selection-end-line="1579" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/employees">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -448,10 +412,64 @@
           <settings layout="Hierarchic Group" zoom="1.0" x="489.0" y="325.0" />
           <SelectedNodes />
           <Categories>
-            <Category />
             <Category>Columns</Category>
           </Categories>
           <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Town.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Department.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/employees_projects" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/projects" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/towns" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/addresses" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/employees" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/departments" />
+    <entry file="das://74108b6f-d696-48d4-96eb-3ea7bb5f355e/schema/soft_uni/table/departments.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d7f7bb53-0c13-469f-901d-3e1fcd459cdd/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/74108b6f-d696-48d4-96eb-3ea7bb5f355e/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/employees_projects">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/addresses">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/softuni_database">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -462,63 +480,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/74108b6f-d696-48d4-96eb-3ea7bb5f355e/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="1587" column="63" selection-end-line="1587" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-501">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Department.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entities/Town.java">
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/projects">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/employees">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2829575b-ae9f-4a0e-8fd2-96d947d78276/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="180">
+          <caret line="1571" column="18" lean-forward="true" selection-start-line="1571" selection-start-column="18" selection-end-line="1571" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/departments">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="68" lean-forward="true" selection-start-line="65" selection-start-column="1" selection-end-line="68" />
+        <state relative-caret-position="483">
+          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#removeObjects#0;class#Engine#0" />
+            <element signature="method#containsEmployee#0;class#Engine#0" />
+            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
+            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
+            <element signature="method#employeeCount#0;class#Engine#0" />
+            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
+            <element signature="method#findLatestProjects#0;class#Engine#0" />
+            <element signature="method#increaseSalary#0;class#Engine#0" />
+            <element signature="method#removeTowns#0;class#Engine#0" />
+            <element signature="method#findEmployees#0;class#Engine#0" />
+            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
           </folding>
         </state>
       </provider>
@@ -540,7 +559,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>JPA</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -575,7 +594,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>introduction-to-hibernate</last-edited>
+          <last-edited>04.IntroductionToHibernate</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
