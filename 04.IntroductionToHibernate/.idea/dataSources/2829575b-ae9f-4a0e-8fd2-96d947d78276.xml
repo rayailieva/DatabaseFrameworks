@@ -1229,74 +1229,120 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="306" parent="280" name="PRIMARY">
+    <index id="306" parent="280" name="FKkvaekcr8qinc0oo3kxwxgtyt9">
+      <ColNames>address_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="307" parent="280" name="FKgy4qe3dnqrm3ktd76sxp7n4c2">
+      <ColNames>department_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="308" parent="280" name="FKi4365uo9af35g7jtbc2rteukt">
+      <ColNames>manager_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="309" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>employee_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="307" parent="281" name="employee_id">
+    <foreign-key id="310" parent="280" name="FKkvaekcr8qinc0oo3kxwxgtyt9">
+      <ColNames>address_id</ColNames>
+      <RefSchemaName>soft_uni</RefSchemaName>
+      <RefTableName>addresses</RefTableName>
+      <RefColNames>address_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="311" parent="280" name="FKgy4qe3dnqrm3ktd76sxp7n4c2">
+      <ColNames>department_id</ColNames>
+      <RefSchemaName>soft_uni</RefSchemaName>
+      <RefTableName>departments</RefTableName>
+      <RefColNames>department_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="312" parent="280" name="FKi4365uo9af35g7jtbc2rteukt">
+      <ColNames>manager_id</ColNames>
+      <RefSchemaName>soft_uni</RefSchemaName>
+      <RefTableName>employees</RefTableName>
+      <RefColNames>employee_id</RefColNames>
+    </foreign-key>
+    <column id="313" parent="281" name="employee_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="281" name="project_id">
+    <column id="314" parent="281" name="project_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="309" parent="281" name="PRIMARY">
+    <index id="315" parent="281" name="FKc9x9r7nbtwnx24vcrfxym9cyy">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="316" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>employee_id
 project_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="310" parent="282" name="project_id">
+    <foreign-key id="317" parent="281" name="FKbslohhow39ayel1dc6cdus5sc">
+      <ColNames>employee_id</ColNames>
+      <RefSchemaName>soft_uni</RefSchemaName>
+      <RefTableName>employees</RefTableName>
+      <RefColNames>employee_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="318" parent="281" name="FKc9x9r7nbtwnx24vcrfxym9cyy">
+      <ColNames>project_id</ColNames>
+      <RefSchemaName>soft_uni</RefSchemaName>
+      <RefTableName>projects</RefTableName>
+      <RefColNames>project_id</RefColNames>
+    </foreign-key>
+    <column id="319" parent="282" name="project_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="282" name="description">
+    <column id="320" parent="282" name="description">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="282" name="end_date">
+    <column id="321" parent="282" name="end_date">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="282" name="name">
+    <column id="322" parent="282" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="282" name="start_date">
+    <column id="323" parent="282" name="start_date">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="315" parent="282" name="PRIMARY">
+    <key id="324" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>project_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="316" parent="283" name="town_id">
+    <column id="325" parent="283" name="town_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="283" name="name">
+    <column id="326" parent="283" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="318" parent="283" name="PRIMARY">
+    <key id="327" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>town_id</ColNames>
       <Primary>1</Primary>

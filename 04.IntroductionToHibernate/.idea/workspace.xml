@@ -45,21 +45,31 @@
       <file leaf-file-name="Engine.java" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+            <state relative-caret-position="412">
+              <caret line="56" column="53" lean-forward="true" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
               <folding>
-                <element signature="method#removeObjects#0;class#Engine#0" />
-                <element signature="method#containsEmployee#0;class#Engine#0" />
-                <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
-                <element signature="method#employeesFromDepartment#0;class#Engine#0" />
-                <element signature="method#employeeCount#0;class#Engine#0" />
-                <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
-                <element signature="method#findLatestProjects#0;class#Engine#0" />
-                <element signature="method#increaseSalary#0;class#Engine#0" />
-                <element signature="method#removeTowns#0;class#Engine#0" />
-                <element signature="method#findEmployees#0;class#Engine#0" />
-                <element signature="method#getMaximumSalaries#0;class#Engine#0" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="employees" pinned="false" current-in-tab="false">
+        <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/employees">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addresses" pinned="false" current-in-tab="false">
+        <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/addresses">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -115,7 +125,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="805" />
     <option name="width" value="1125" />
     <option name="height" value="1060" />
@@ -230,11 +240,12 @@
       <workItem from="1541354742630" duration="2577000" />
       <workItem from="1541357575268" duration="3294000" />
       <workItem from="1541361283737" duration="740000" />
+      <workItem from="1541422255088" duration="834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12649000" />
+    <option name="totallyTimeSpent" value="13483000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -246,7 +257,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="644" y="0" width="900" height="848" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50201344" side_tool="true" weight="0.9396067" />
@@ -267,15 +279,15 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.61376405" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.7849003" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286517" />
       <window_info id="Persistence" order="6" side_tool="true" weight="0.3297619" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.33333334" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.3261745" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.33333334" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -330,20 +342,24 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="966">
           <caret line="154" column="26" lean-forward="true" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
           <folding>
-            <element signature="method#removeObjects#0;class#Engine#0" />
-            <element signature="method#containsEmployee#0;class#Engine#0" />
-            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
-            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
-            <element signature="method#employeeCount#0;class#Engine#0" />
-            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
-            <element signature="method#findLatestProjects#0;class#Engine#0" />
-            <element signature="method#increaseSalary#0;class#Engine#0" />
-            <element signature="method#removeTowns#0;class#Engine#0" />
-            <element signature="method#findEmployees#0;class#Engine#0" />
-            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -353,17 +369,9 @@
         <state relative-caret-position="315">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
-            <element signature="method#removeObjects#0;class#Engine#0" />
-            <element signature="method#containsEmployee#0;class#Engine#0" />
-            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
-            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
-            <element signature="method#employeeCount#0;class#Engine#0" />
-            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
-            <element signature="method#findLatestProjects#0;class#Engine#0" />
-            <element signature="method#increaseSalary#0;class#Engine#0" />
-            <element signature="method#removeTowns#0;class#Engine#0" />
-            <element signature="method#findEmployees#0;class#Engine#0" />
-            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -459,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/addresses">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/softuni_database">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -501,13 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/employees">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2829575b-ae9f-4a0e-8fd2-96d947d78276/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -522,22 +516,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/employees">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2829575b-ae9f-4a0e-8fd2-96d947d78276/schema/soft_uni/table/addresses">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+        <state relative-caret-position="412">
+          <caret line="56" column="53" lean-forward="true" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
           <folding>
-            <element signature="method#removeObjects#0;class#Engine#0" />
-            <element signature="method#containsEmployee#0;class#Engine#0" />
-            <element signature="method#employeeHasSalaryOver#0;class#Engine#0" />
-            <element signature="method#employeesFromDepartment#0;class#Engine#0" />
-            <element signature="method#employeeCount#0;class#Engine#0" />
-            <element signature="method#getEmployeeWithProject#0;class#Engine#0" />
-            <element signature="method#findLatestProjects#0;class#Engine#0" />
-            <element signature="method#increaseSalary#0;class#Engine#0" />
-            <element signature="method#removeTowns#0;class#Engine#0" />
-            <element signature="method#findEmployees#0;class#Engine#0" />
-            <element signature="method#getMaximumSalaries#0;class#Engine#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -24,6 +24,7 @@ public class Engine implements Runnable {
         //this.containsEmployee(); Problem 3
         //this.employeeHasSalaryOver(); Problem 4
         //this.employeesFromDepartment(); Problem 5
+        //this.addAddress(); Problem 6
         //this.employeeCount(); Problem 7
         //this.getEmployeeWithProject(); Problem 8
         //this.findLatestProjects(); Problem 9
@@ -31,6 +32,29 @@ public class Engine implements Runnable {
         //this.removeTowns(); Problem 11
         //this.findEmployees(); Problem 12
         //this.getMaximumSalaries(); Problem 13
+    }
+
+    //Problem 6.Adding a New Address and Updating Employee
+    private void addAddress() {
+        this.entityManager.getTransaction().begin();
+
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+
+        Employee employee =
+                this.entityManager
+                .createQuery("FROM Employee WHERE last_Name = :name", Employee.class)
+                .setParameter("name", name)
+                .getSingleResult();
+
+        Address address = new Address();
+        address.setText("Vitoshka 15");
+
+        this.entityManager.detach(employee.getAddress());
+        employee.setAddress(address);
+        this.entityManager.merge(employee);
+
+        this.entityManager.getTransaction().commit();
     }
 
     //Problem 2.Remove Objects
