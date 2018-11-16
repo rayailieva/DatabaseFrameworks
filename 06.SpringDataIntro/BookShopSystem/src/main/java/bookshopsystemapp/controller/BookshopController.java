@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class BookshopController implements CommandLineRunner {
@@ -26,22 +25,19 @@ public class BookshopController implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        this.authorService.seedAuthors();
-        this.categoryService.seedCategories();
-        this.bookService.seedBooks();
+        //this.authorService.seedAuthors();
+        //this.categoryService.seedCategories();
+        //this.bookService.seedBooks();
 
-        //this.bookTitles();
-        // this.authorNames();
+       // List<String> result = this.bookService.getAllBooksByReleaseDateAfter();
+        //result.forEach(System.out::println);
+
+        //List<String> result = this.bookService.getAllAuthorsWithBookAfter();
+        //result.forEach(System.out::println);
+
+        List<String> result = this.authorService.getAuthorByCountOfBooks();
+        result.forEach(System.out::println);
 
     }
 
-    private void bookTitles() {
-        List<String> bookTitles = this.bookService.getAllBooksTitlesAfter();
-
-        System.out.println(String.join("\r\n", bookTitles));
-    }
-
-    private void authorNames() {
-        this.bookService.getAllAuthorsWithBookBefore().forEach(System.out::println);
-    }
 }

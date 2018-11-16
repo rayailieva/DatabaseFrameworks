@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService {
 
     private final static String BOOKS_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\BookShopSystem\\src\\main\\resources\\files\\books.txt";
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\06.SpringDataIntro\\BookShopSystem\\src\\main\\resources\\files\\books.txt";
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
@@ -82,18 +82,26 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<String> getAllBooksTitlesAfter() {
-        List<Book> books = this.bookRepository.findAllByReleaseDateAfter(LocalDate.parse("2000-12-31"));
+    public List<String> getAllBooksByReleaseDateAfter() {
+        List<Book> books =
+                this.bookRepository.findAllByReleaseDateAfter(LocalDate.parse("2000-12-31"));
 
-        return books.stream().map(b -> b.getTitle()).collect(Collectors.toList());
+        return books.stream().map(Book::getTitle).collect(Collectors.toList());
     }
 
     @Override
-    public Set<String> getAllAuthorsWithBookBefore() {
-        List<Book> books = this.bookRepository.findAllByReleaseDateBefore(LocalDate.parse("1990-01-01"));
+    public List<String> getAllAuthorsWithBookAfter() {
+        List<Book> books =
+                this.bookRepository.findAllByReleaseDateBefore(LocalDate.parse("1990-01-01"));
 
-        return books.stream().map(b -> String.format("%s %s", b.getAuthor().getFirstName(), b.getAuthor().getLastName())).collect(Collectors.toSet());
+        return books.stream()
+                .map(b -> String.format("%s %s"
+                        , b.getAuthor().getFirstName()
+                        , b.getAuthor().getLastName()))
+                .collect(Collectors.toList());
     }
+
+
 
     private Author getRandomAuthor() {
         Random random = new Random();

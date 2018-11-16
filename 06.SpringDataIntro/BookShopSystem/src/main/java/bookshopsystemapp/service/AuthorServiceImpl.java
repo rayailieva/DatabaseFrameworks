@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
     private final static String AUTHORS_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\BookShopSystem\\src\\main\\resources\\files\\authors.txt";
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\06.SpringDataIntro\\BookShopSystem\\src\\main\\resources\\files\\authors.txt";
 
     private final AuthorRepository authorRepository;
     private final FileUtil fileUtil;
@@ -39,5 +41,15 @@ public class AuthorServiceImpl implements AuthorService {
 
             this.authorRepository.saveAndFlush(author);
         }
+    }
+
+    @Override
+    public List<String> getAuthorByCountOfBooks() {
+        return this.authorRepository.findAuthorsByOrderByBooksDesc().stream()
+                .map(a -> String.format("%s %s %d"
+                        , a.getFirstName()
+                        , a.getLastName()
+                        , a.getBooks().size()))
+                .collect(Collectors.toList());
     }
 }

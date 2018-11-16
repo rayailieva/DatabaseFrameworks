@@ -12,7 +12,7 @@ import java.io.IOException;
 public class CategoryServiceImpl implements CategoryService {
 
     private final static String CATEGORIES_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\BookShopSystem\\src\\main\\resources\\files\\categories.txt";
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\06.SpringDataIntro\\BookShopSystem\\src\\main\\resources\\files\\categories.txt";
 
     private final CategoryRepository categoryRepository;
     private final FileUtil fileUtil;
