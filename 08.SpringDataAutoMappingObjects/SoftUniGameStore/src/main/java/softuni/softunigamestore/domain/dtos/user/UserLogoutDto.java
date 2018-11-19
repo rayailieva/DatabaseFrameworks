@@ -1,4 +1,4 @@
-package softuni.softunigamestore.domain.dtos;
+package softuni.softunigamestore.domain.dtos.user;
 
 public class UserLogoutDto {
 

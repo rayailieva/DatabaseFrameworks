@@ -1,19 +1,21 @@
-package softuni.softunigamestore.service;
+package softuni.softunigamestore.service.user;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import softuni.softunigamestore.domain.dtos.UserLoginDto;
-import softuni.softunigamestore.domain.dtos.UserLogoutDto;
-import softuni.softunigamestore.domain.dtos.UserRegisterDto;
+import softuni.softunigamestore.domain.dtos.user.UserLoginDto;
+import softuni.softunigamestore.domain.dtos.user.UserLogoutDto;
+import softuni.softunigamestore.domain.dtos.user.UserRegisterDto;
+import softuni.softunigamestore.domain.dtos.view.GameTitleAndPriceViewDto;
 import softuni.softunigamestore.domain.entities.Role;
 import softuni.softunigamestore.domain.entities.User;
 import softuni.softunigamestore.repository.UserRepository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
-import javax.xml.validation.Validator;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -108,6 +110,19 @@ public class UserServiceImpl implements UserService {
         sb.append(String.format("User %s successfully logged out", entity.getFullName()));
 
         return sb.toString();
+    }
+
+    @Override
+    public Set<GameTitleAndPriceViewDto> getOwnedGamesTitle(Long id) {
+        if(id != null){
+            return this.userRepository
+                    .findById(id)
+                    .map(User::getGames)
+                    .stream()
+                    .map(game -> modelMapper.map(game, GameTitleAndPriceViewDto.class))
+                    .collect(Collectors.toSet());
+        }
+        return new LinkedHashSet<>();
     }
 
 }

@@ -1,25 +1,20 @@
-package softuni.softunigamestore.domain.dtos;
-
+package softuni.softunigamestore.domain.dtos.user;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class UserRegisterDto {
+public class UserLoginDto {
 
     private String email;
     private String password;
-    private String confirmPassword;
-    private String fullName;
 
-    public UserRegisterDto(){
+    public UserLoginDto(){
     }
 
-    public UserRegisterDto(String email, String password, String confirmPassword, String fullName) {
+    public UserLoginDto(String email, String password) {
         this.email = email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.fullName = fullName;
     }
 
     @NotNull(message = "Email cannot be null.")
@@ -41,22 +36,5 @@ public class UserRegisterDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @NotNull(message = "Confirm Password cannot be null.")
-    public String getConfirmPassword() {
-        return this.confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getFullName() {
-        return this.fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 }
