@@ -9,7 +9,7 @@ import java.util.Set;
 public interface GameService {
     String addGame(GameAddDto gameAddDto);
 
-    String editGame(Long id, GameEditDto gameEditDto);
+    String editGame(String[] tokens);
 
     void update(Long id, GameEditDto gameEditDto);
 

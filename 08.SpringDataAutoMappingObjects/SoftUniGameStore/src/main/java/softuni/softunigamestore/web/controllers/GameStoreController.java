@@ -6,6 +6,7 @@ import softuni.softunigamestore.domain.dtos.game.GameAddDto;
 import softuni.softunigamestore.domain.dtos.user.UserLoginDto;
 import softuni.softunigamestore.domain.dtos.user.UserLogoutDto;
 import softuni.softunigamestore.domain.dtos.user.UserRegisterDto;
+import softuni.softunigamestore.domain.entities.User;
 import softuni.softunigamestore.repository.GameRepository;
 import softuni.softunigamestore.service.game.GameService;
 import softuni.softunigamestore.service.user.UserService;
@@ -76,11 +77,11 @@ public class GameStoreController implements CommandLineRunner {
                 case "AddGame":
                     GameAddDto gameAddDto =
                             new GameAddDto(inputParams[1], new BigDecimal(inputParams[2]), Double.parseDouble(inputParams[3]), inputParams[4], inputParams[5], inputParams[6], LocalDate.parse(inputParams[7],DateTimeFormatter.ofPattern("d-M-yyyy")));
-                    String result = this.gameService.addGame(gameAddDto);
-                    System.out.println(result);
+                    System.out.println(this.gameService.addGame(gameAddDto));
                     break;
 
                 case "EditGame":
+                    System.out.println(this.gameService.editGame(inputParams));
                     break;
 
                 case "DeleteGame":
@@ -105,7 +106,6 @@ public class GameStoreController implements CommandLineRunner {
                     break;
 
                 case "OwnedGame":
-
                     break;
 
             }

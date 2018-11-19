@@ -11,6 +11,7 @@ import softuni.softunigamestore.repository.GameRepository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
+import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -50,31 +51,68 @@ public class GameServiceImpl implements GameService{
     }
 
     @Override
-    public String editGame(Long id, GameEditDto gameEditDto) {
+    public String editGame(String[] tokens) {
+
         javax.validation.Validator validator =  Validation
                 .byDefaultProvider()
                 .configure()
                 .buildValidatorFactory()
                 .getValidator();
 
-        StringBuilder sb = new StringBuilder();
+       StringBuilder sb = new StringBuilder();
+       Long id = Long.parseLong(tokens[1]);
 
-        if(validator.validate(gameEditDto).size() > 0){
-            for (ConstraintViolation<GameEditDto> violation : validator.validate(gameEditDto)) {
+       Game game = this.gameRepository.findById(id).orElse(null);
+
+       if(game == null){
+           return "Game not found!";
+       }
+
+       GameEditDto gameToEdit = modelMapper.map(game, GameEditDto.class);
+       gameToEdit.setId(id);
+
+        for (int i = 2; i < tokens.length; i++) {
+            String[] propertiesElements = tokens[i].split("=");
+            String propertyName = propertiesElements[0];
+            String propertyKey = propertiesElements[1];
+            switch (propertyName) {
+                case "title":
+                    return "Title cannot be edited!";
+                case "price":
+                    gameToEdit.setPrice(new BigDecimal(propertyKey));
+                    break;
+                case "size":
+                    gameToEdit.setSize(Double.parseDouble(propertyKey));
+                    break;
+                case "trailer":
+                    gameToEdit.setTrailer(propertyKey);
+                    break;
+                case "thumbnailUrl":
+                    gameToEdit.setImageThumbnail(propertyKey);
+                    break;
+                case "description":
+                    gameToEdit.setDescription(propertyKey);
+                    break;
+            }
+        }
+        Set<ConstraintViolation<GameEditDto>> violations = validator.validate(gameToEdit);
+
+        if (violations.size() > 0) {
+            for (ConstraintViolation<GameEditDto> violation : violations) {
                 sb.append(violation.getMessage()).append(System.lineSeparator());
             }
-        }else{
-            Game entity = this.gameRepository.findById(id).orElse(null);
-
-            if(entity == null){
-                return sb.append("Game does not exist.").append(System.lineSeparator()).toString();
+            return sb.toString().trim();
+        } else {
+            Game editedGame = this.modelMapper.map(gameToEdit, Game.class);
+            if (editedGame != null) {
+                Game savedGame = this.gameRepository.saveAndFlush(editedGame);
+                if (savedGame != null) {
+                    return String.format("Edited %s", savedGame.getTitle());
+                }
             }
-
-            update(id, gameEditDto);
-            System.out.println("Edited " + entity.getTitle());
         }
 
-        return sb.toString().trim();
+        return null;
     }
 
     @Override

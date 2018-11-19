@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class GameEditDto {
+    private Long id;
     private String title;
     private BigDecimal price;
     private Double size;
@@ -21,7 +22,8 @@ public class GameEditDto {
     public GameEditDto(){
     }
 
-    public GameEditDto(String title, BigDecimal price, Double size, String trailer, String imageThumbnail, String description, LocalDate releaseDate) {
+    public GameEditDto(Long id, String title, BigDecimal price, Double size, String trailer, String imageThumbnail, String description, LocalDate releaseDate) {
+        this.id = id;
         this.title = title;
         this.price = price;
         this.size = size;
@@ -94,5 +96,13 @@ public class GameEditDto {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 }
