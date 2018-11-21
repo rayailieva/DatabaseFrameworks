@@ -2,8 +2,7 @@ package productsshop.domain.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "products")
 public class Product extends BaseEntity{
@@ -12,10 +11,10 @@ public class Product extends BaseEntity{
     private BigDecimal price;
     private User seller;
     private User buyer;
-    private Set<Category> categories;
+    private List<Category> categories;
 
     public Product(){
-        this.categories = new LinkedHashSet<>();
+        this.categories = new ArrayList<>();
     }
 
     @Column(name = "name", nullable = false)
@@ -36,7 +35,7 @@ public class Product extends BaseEntity{
         this.price = price;
     }
 
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "seller_id", referencedColumnName = "id")
     public User getSeller() {
         return this.seller;
@@ -46,7 +45,7 @@ public class Product extends BaseEntity{
         this.seller = seller;
     }
 
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "buyer_id", referencedColumnName = "id")
     public User getBuyer() {
         return this.buyer;
@@ -56,12 +55,17 @@ public class Product extends BaseEntity{
         this.buyer = buyer;
     }
 
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
-    public Set<Category> getCategories() {
-        return this.categories;
+    @ManyToMany(targetEntity = Category.class)
+    @JoinTable(
+            name = "category_products",
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
+    )
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 }

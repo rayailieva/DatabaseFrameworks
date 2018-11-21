@@ -3,15 +3,17 @@ package productsshop.web.controllers;
 import com.google.gson.Gson;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
-import productsshop.domain.dtos.CategorySeedDto;
-import productsshop.domain.dtos.ProductSeedDto;
-import productsshop.domain.dtos.UserSeedDto;
+import productsshop.domain.dtos.*;
 import productsshop.service.CategoryService;
 import productsshop.service.ProductService;
 import productsshop.service.UserService;
 import productsshop.util.FileIOUtil;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class ProductShopController implements CommandLineRunner {
@@ -37,9 +39,13 @@ public class ProductShopController implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       this.seedUsers();
-       this.seedCategories();
-       this.seedProducts();
+       //this.seedUsers();
+       //this.seedCategories();
+       //this.seedProducts();
+
+       this.productsInRange();
+       this.usersSoldProducts();
+       this.categoriesByProductsCount();
     }
 
     private void seedUsers() throws IOException {
@@ -64,5 +70,32 @@ public class ProductShopController implements CommandLineRunner {
         ProductSeedDto[] productSeedDtos = this.gson.fromJson(productFileContent, ProductSeedDto[].class);
 
         this.productService.seedProducts(productSeedDtos);
+    }
+
+    private void productsInRange() throws IOException {
+        List<ProductInRangeDto> productInRangeDtos = this.productService.productsInRange(BigDecimal.valueOf(500), BigDecimal.valueOf(1000));
+
+        String productsInRangeJson = this.gson.toJson(productInRangeDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\products-in-range.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(productsInRangeJson);
+        writer.close();
+    }
+
+    private void usersSoldProducts() throws IOException {
+        List<UserFirstAndLastNamesAndSoldProductsDto> userFirstAndLastNamesAndSoldProductsDtos = this.userService.getSuccessfulSellers();
+
+        String soldProductsJson = this.gson.toJson(userFirstAndLastNamesAndSoldProductsDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\users-sold-products.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(soldProductsJson);
+        writer.close();
+    }
+
+    private void categoriesByProductsCount() {
     }
 }

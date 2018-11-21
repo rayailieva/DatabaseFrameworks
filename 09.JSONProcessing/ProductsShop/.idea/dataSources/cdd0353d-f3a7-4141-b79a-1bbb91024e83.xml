@@ -1135,7 +1135,7 @@
     <table id="289" parent="9" name="users_friends"/>
     <column id="290" parent="285" name="id">
       <Position>1</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1151,15 +1151,15 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="293" parent="286" name="category_id">
+    <column id="293" parent="286" name="product_id">
       <Position>1</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="286" name="product_id">
+    <column id="294" parent="286" name="category_id">
       <Position>2</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1167,27 +1167,25 @@
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="296" parent="286" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>category_id
-product_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="297" parent="286" name="FK58ip0foccc3ry5ohrot1vr3of">
+    <index id="296" parent="286" name="FK58ip0foccc3ry5ohrot1vr3of">
       <ColNames>category_id</ColNames>
-      <RefSchemaName>products_shop_db</RefSchemaName>
-      <RefTableName>categories</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="298" parent="286" name="FKpr3kfk7ij874uqy9u846oc42o">
+      <Type>btree</Type>
+    </index>
+    <foreign-key id="297" parent="286" name="FKpr3kfk7ij874uqy9u846oc42o">
       <ColNames>product_id</ColNames>
       <RefSchemaName>products_shop_db</RefSchemaName>
       <RefTableName>products</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
+    <foreign-key id="298" parent="286" name="FK58ip0foccc3ry5ohrot1vr3of">
+      <ColNames>category_id</ColNames>
+      <RefSchemaName>products_shop_db</RefSchemaName>
+      <RefTableName>categories</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
     <column id="299" parent="287" name="id">
       <Position>1</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1206,12 +1204,12 @@ product_id</ColNames>
     </column>
     <column id="302" parent="287" name="buyer_id">
       <Position>4</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="303" parent="287" name="seller_id">
       <Position>5</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="304" parent="287" name="FK4osxb4hh755cpi0q0t2sba2q6">
@@ -1241,7 +1239,7 @@ product_id</ColNames>
     </foreign-key>
     <column id="309" parent="288" name="id">
       <Position>1</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1270,13 +1268,13 @@ product_id</ColNames>
     </key>
     <column id="314" parent="289" name="user_id">
       <Position>1</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="315" parent="289" name="friend_id">
       <Position>2</Position>
-      <DataType>bigint(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

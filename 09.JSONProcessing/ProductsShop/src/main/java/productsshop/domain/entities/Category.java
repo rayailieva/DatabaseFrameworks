@@ -2,16 +2,16 @@ package productsshop.domain.entities;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "categories")
 public class Category extends BaseEntity{
 
     private String name;
-    private Set<Product> products;
+    private List<Product> products;
 
     public Category(){
-        this.products = new LinkedHashSet<>();
     }
 
     @Column(name = "name", nullable = false)
@@ -23,15 +23,12 @@ public class Category extends BaseEntity{
         this.name = name;
     }
 
-    @ManyToMany
-    @JoinTable(name = "category_products",
-        joinColumns = {@JoinColumn(name = "category_id")},
-        inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    public Set<Product> getProducts() {
-        return this.products;
+    @ManyToMany(targetEntity = Product.class, mappedBy = "categories")
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
