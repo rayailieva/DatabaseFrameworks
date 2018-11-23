@@ -4,13 +4,12 @@ import cardealer.domain.dtos.binding.CarsSeedDto;
 import cardealer.domain.dtos.binding.CustomersSeedDto;
 import cardealer.domain.dtos.binding.PartsSeedDto;
 import cardealer.domain.dtos.binding.SupplySeedDto;
-import cardealer.domain.dtos.view.CarViewDto;
-import cardealer.domain.dtos.view.OrderedCustomersDto;
-import cardealer.domain.dtos.view.SupplierViewDto;
+import cardealer.domain.dtos.view.*;
 import cardealer.service.*;
 import cardealer.util.FileIOUtil;
 import cardealer.util.FileIOUtilImpl;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
@@ -23,13 +22,13 @@ import java.util.List;
 public class CarDealerController implements CommandLineRunner {
 
     private final static String SUPPLIER_FILE_PATH =
-        "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\suppliers.json" ;
+        "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\input\\suppliers.json" ;
     private final static String PART_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\parts.json" ;
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\input\\parts.json" ;
     private final static String CARS_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\cars.json" ;
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\input\\cars.json" ;
     private final static String CUSTOMER_FILE_PATH =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\customers.json" ;
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\input\\customers.json" ;
 
 
 
@@ -54,14 +53,17 @@ public class CarDealerController implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //this.seedSuppliers();
-        // this.seedParts();
+        //this.seedParts();
         //this.seedCars();
-        //this.seedCustomers();
+        // this.seedCustomers();
         //this.seedSales();
         //this.orderedCustomers();
         //this.getToyotaCars("Toyota");
         //this.getLocalSuppliers();
+        //this.getCustomersTotalSales();
+        this.getSalesDiscounts();
     }
+
 
     private void seedSales() {
         this.salesService.generateSales();
@@ -105,7 +107,7 @@ public class CarDealerController implements CommandLineRunner {
 
         String orderedCustomersJson = this.gson.toJson(orderedCustomersDtos);
 
-        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\ordered-customers.json");
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\ordered-customers.json");
 
         FileWriter writer = new FileWriter(file);
         writer.write(orderedCustomersJson);
@@ -117,7 +119,7 @@ public class CarDealerController implements CommandLineRunner {
 
         String carsFromToyotaDtoJson = this.gson.toJson(carsFromToyotaDtos);
 
-        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\toyota-cars.json");
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\toyota-cars.json");
 
         FileWriter writer = new FileWriter(file);
         writer.write(carsFromToyotaDtoJson);
@@ -129,13 +131,36 @@ public class CarDealerController implements CommandLineRunner {
 
         String localSuppliersJson = this.gson.toJson(supplierViewDtos);
 
-        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\local-suppliers.json");
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\local-suppliers.json");
 
         FileWriter writer = new FileWriter(file);
         writer.write(localSuppliersJson);
         writer.close();
     }
 
+    private void getCustomersTotalSales() throws IOException {
+        List<CustomerPurchasesViewDto> customerPurchasesViewDtos = this.customerService.getCustomersPurchases();
+
+        String salesJson = this.gson.toJson(customerPurchasesViewDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\customers-total-sales.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(salesJson);
+        writer.close();
+    }
+
+    private void getSalesDiscounts() throws IOException {
+        List<SaleDetailsViewDto> saleDetailsViewDtos = this.salesService.getSalesDetails();
+
+        String salesDetailsJson = this.gson.toJson(saleDetailsViewDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\sales-discounts.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(salesDetailsJson);
+        writer.close();
+    }
 
 
 

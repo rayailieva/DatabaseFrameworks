@@ -1,9 +1,9 @@
 package cardealer.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "customers")
 public class Customer extends BaseEntity {
@@ -11,6 +11,9 @@ public class Customer extends BaseEntity {
     private String name;
     private Date birthDate;
     private boolean isYoungDriver;
+
+
+    private Set<Sale> purchases;
 
     public Customer(){
     }
@@ -40,5 +43,14 @@ public class Customer extends BaseEntity {
 
     public void setYoungDriver(boolean youngDriver) {
         isYoungDriver = youngDriver;
+    }
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public Set<Sale> getPurchases() {
+        return this.purchases;
+    }
+
+    public void setPurchases(Set<Sale> purchases) {
+        this.purchases = purchases;
     }
 }

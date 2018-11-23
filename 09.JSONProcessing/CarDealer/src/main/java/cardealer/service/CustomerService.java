@@ -1,6 +1,7 @@
 package cardealer.service;
 
 import cardealer.domain.dtos.binding.CustomersSeedDto;
+import cardealer.domain.dtos.view.CustomerPurchasesViewDto;
 import cardealer.domain.dtos.view.OrderedCustomersDto;
 import cardealer.domain.entities.Customer;
 
@@ -13,4 +14,6 @@ public interface CustomerService {
     List<Customer> getAllCustomers();
 
     List<OrderedCustomersDto> getOrderedCustomers();
+
+    List<CustomerPurchasesViewDto> getCustomersPurchases();
 }

@@ -1,16 +1,21 @@
 package cardealer.service;
 
+import cardealer.domain.dtos.view.CarViewShortDto;
+import cardealer.domain.dtos.view.SaleDetailsViewDto;
 import cardealer.domain.entities.Car;
 import cardealer.domain.entities.Customer;
+import cardealer.domain.entities.Part;
 import cardealer.domain.entities.Sale;
 import cardealer.repository.SalesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class SalesServiceImpl implements SalesService {
@@ -48,5 +53,29 @@ public class SalesServiceImpl implements SalesService {
         this.salesRepository.saveAll(sales);
     }
 
+    @Override
+    public List<SaleDetailsViewDto> getSalesDetails(){
+        return this.salesRepository
+                .findAll()
+                .stream()
+                .map(sale -> {
+                    SaleDetailsViewDto saleDetailsViewDto = new SaleDetailsViewDto();
+                    saleDetailsViewDto.setCar(this.modelMapper.map(sale.getCar(), CarViewShortDto.class));
+                    saleDetailsViewDto.setCustomerName(sale.getCustomer().getName());
+                    saleDetailsViewDto.setDiscount(sale.getDiscount());
+
+                    saleDetailsViewDto.setPrice(sale
+                            .getCar()
+                            .getParts()
+                            .stream()
+                            .map(Part::getPrice)
+                            .reduce(BigDecimal.ZERO, BigDecimal::add));
+
+                    saleDetailsViewDto.setPriceWithDiscount(saleDetailsViewDto
+                            .getPrice()
+                            .multiply(BigDecimal.valueOf(1.0d - saleDetailsViewDto.getDiscount())));
+                    return saleDetailsViewDto;
+                        }).collect(Collectors.toList());
+    }
 
 }

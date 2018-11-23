@@ -12,4 +12,6 @@ public interface CustomersRepository extends JpaRepository<Customer, Integer> {
 
     @Query(value = "SELECT c FROM cardealer.domain.entities.Customer AS c ORDER BY c.birthDate")
     List<Customer> getOrderedCustomers();
+
+
 }
