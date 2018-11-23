@@ -1,7 +1,7 @@
 package cardealer.service;
 
-import cardealer.domain.dtos.CarViewDto;
-import cardealer.domain.dtos.CarsSeedDto;
+import cardealer.domain.dtos.view.CarViewDto;
+import cardealer.domain.dtos.binding.CarsSeedDto;
 import cardealer.domain.entities.Car;
 
 import java.util.List;

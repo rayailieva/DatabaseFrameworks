@@ -1,6 +1,6 @@
 package cardealer.service;
 
-import cardealer.domain.dtos.PartsSeedDto;
+import cardealer.domain.dtos.binding.PartsSeedDto;
 import cardealer.domain.entities.Part;
 
 import java.util.List;

@@ -1,9 +1,7 @@
 package cardealer.service;
 
-import cardealer.domain.dtos.CarViewDto;
-import cardealer.domain.dtos.CustomersSeedDto;
-import cardealer.domain.dtos.OrderedCustomersDto;
-import cardealer.domain.dtos.SaleViewDto;
+import cardealer.domain.dtos.binding.CustomersSeedDto;
+import cardealer.domain.dtos.view.OrderedCustomersDto;
 import cardealer.domain.entities.Customer;
 import cardealer.repository.CustomersRepository;
 import cardealer.util.ValidatorUtil;
@@ -52,10 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
         return this.customersRepository
                 .getOrderedCustomers()
                 .stream()
-                .map(customer -> {
-                    OrderedCustomersDto customerDto = this.modelMapper.map(customer, OrderedCustomersDto.class);
-                            return customerDto;
-                }
+                .map(customer -> this.modelMapper.map(customer, OrderedCustomersDto.class)
                    )
                 .collect(Collectors.toList());
     }

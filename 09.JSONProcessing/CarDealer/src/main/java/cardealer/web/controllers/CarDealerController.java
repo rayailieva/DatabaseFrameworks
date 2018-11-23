@@ -1,6 +1,12 @@
 package cardealer.web.controllers;
 
-import cardealer.domain.dtos.*;
+import cardealer.domain.dtos.binding.CarsSeedDto;
+import cardealer.domain.dtos.binding.CustomersSeedDto;
+import cardealer.domain.dtos.binding.PartsSeedDto;
+import cardealer.domain.dtos.binding.SupplySeedDto;
+import cardealer.domain.dtos.view.CarViewDto;
+import cardealer.domain.dtos.view.OrderedCustomersDto;
+import cardealer.domain.dtos.view.SupplierViewDto;
 import cardealer.service.*;
 import cardealer.util.FileIOUtil;
 import cardealer.util.FileIOUtilImpl;
@@ -53,31 +59,8 @@ public class CarDealerController implements CommandLineRunner {
         //this.seedCustomers();
         //this.seedSales();
         //this.orderedCustomers();
-        this.getToyotaCars("Toyota");
-    }
-
-    private void getToyotaCars(String make) throws IOException {
-        List<CarViewDto> carsFromToyotaDtos = this.carService.getCarsByMake(make);
-
-        String carsFromToyotaDtoJson = this.gson.toJson(carsFromToyotaDtos);
-
-        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\toyota-cars.json");
-
-        FileWriter writer = new FileWriter(file);
-        writer.write(carsFromToyotaDtoJson);
-        writer.close();
-    }
-
-    private void orderedCustomers() throws IOException {
-        List<OrderedCustomersDto> orderedCustomersDtos = this.customerService.getOrderedCustomers();
-
-        String orderedCustomersJson = this.gson.toJson(orderedCustomersDtos);
-
-        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\ordered-customers.json");
-
-        FileWriter writer = new FileWriter(file);
-        writer.write(orderedCustomersJson);
-        writer.close();
+        //this.getToyotaCars("Toyota");
+        //this.getLocalSuppliers();
     }
 
     private void seedSales() {
@@ -116,4 +99,44 @@ public class CarDealerController implements CommandLineRunner {
 
         this.partsService.seedParts(partsSeedDtos);
     }
+
+    private void orderedCustomers() throws IOException {
+        List<OrderedCustomersDto> orderedCustomersDtos = this.customerService.getOrderedCustomers();
+
+        String orderedCustomersJson = this.gson.toJson(orderedCustomersDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\ordered-customers.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(orderedCustomersJson);
+        writer.close();
+    }
+
+    private void getToyotaCars(String make) throws IOException {
+        List<CarViewDto> carsFromToyotaDtos = this.carService.getCarsByMake(make);
+
+        String carsFromToyotaDtoJson = this.gson.toJson(carsFromToyotaDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\toyota-cars.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(carsFromToyotaDtoJson);
+        writer.close();
+    }
+
+    private void getLocalSuppliers() throws IOException {
+        List<SupplierViewDto> supplierViewDtos = this.supplierService.getLocalSuppliers();
+
+        String localSuppliersJson = this.gson.toJson(supplierViewDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\local-suppliers.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(localSuppliersJson);
+        writer.close();
+    }
+
+
+
+
 }

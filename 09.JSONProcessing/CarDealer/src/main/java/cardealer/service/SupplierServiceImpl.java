@@ -1,12 +1,15 @@
 package cardealer.service;
 
-import cardealer.domain.dtos.SupplySeedDto;
+import cardealer.domain.dtos.binding.SupplySeedDto;
+import cardealer.domain.dtos.view.SupplierViewDto;
 import cardealer.domain.entities.Supplier;
 import cardealer.repository.SupplierRepository;
 import cardealer.util.ValidatorUtil;
 import cardealer.util.ValidatorUtilImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
@@ -35,5 +38,10 @@ public class SupplierServiceImpl implements SupplierService {
             this.supplierRepository.saveAndFlush(entity);
             }
         }
+
+    @Override
+    public List<SupplierViewDto> getLocalSuppliers() {
+       return this.supplierRepository.getLocalSuppliers();
+    }
 }
 

@@ -1,4 +1,4 @@
-package cardealer.domain.dtos;
+package cardealer.domain.dtos.binding;
 
 import com.google.gson.annotations.Expose;
 
