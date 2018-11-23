@@ -43,8 +43,8 @@ public class ProductShopController implements CommandLineRunner {
        //this.seedCategories();
        //this.seedProducts();
 
-       this.productsInRange();
-       this.usersSoldProducts();
+       //this.productsInRange();
+       //his.usersSoldProducts();
        this.categoriesByProductsCount();
     }
 
@@ -96,6 +96,16 @@ public class ProductShopController implements CommandLineRunner {
         writer.close();
     }
 
-    private void categoriesByProductsCount() {
+    private void categoriesByProductsCount() throws IOException {
+        List<CategoryNameProductsCountAverageAndTotalPricesDto> categoryNameProductsCountAverageAndTotalPricesDtos =
+                this.categoryService.getCategoriesByProductsCount();
+
+        String categories = this.gson.toJson(categoryNameProductsCountAverageAndTotalPricesDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\categories-by-products.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(categories);
+        writer.close();
     }
 }

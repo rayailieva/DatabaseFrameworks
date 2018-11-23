@@ -8,7 +8,7 @@ public class Car extends BaseEntity{
 
     private String make;
     private String model;
-    private Double travelled_distance;
+    private Long travelled_distance;
     private Set<Part> parts;
 
     public Car(){
@@ -33,11 +33,11 @@ public class Car extends BaseEntity{
     }
 
     @Column(name = "travelled_distance")
-    public Double getTravelled_distance() {
+    public Long getTravelled_distance() {
         return this.travelled_distance;
     }
 
-    public void setTravelled_distance(Double travelled_distance) {
+    public void setTravelled_distance(Long travelled_distance) {
         this.travelled_distance = travelled_distance;
     }
 

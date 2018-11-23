@@ -1,0 +1,13 @@
+package cardealer.service;
+
+import cardealer.domain.dtos.PartsSeedDto;
+import cardealer.domain.entities.Part;
+
+import java.util.List;
+
+public interface PartsService {
+
+    void seedParts(PartsSeedDto[] partsSeedDtos);
+
+    List<Part> getAllParts();
+}

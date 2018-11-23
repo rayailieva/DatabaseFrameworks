@@ -40,9 +40,12 @@ public class CategoryServiceImpl implements CategoryService {
             Category entity = this.modelMapper.map(categorySeedDto, Category.class);
 
             this.categoryRepository.saveAndFlush(entity);
-
         }
     }
 
+    @Override
+    public List<CategoryNameProductsCountAverageAndTotalPricesDto> getCategoriesByProductsCount() {
+        return this.categoryRepository.getCategoriesByProductsCount();
+    }
 
 }

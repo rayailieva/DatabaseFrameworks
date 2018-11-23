@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
                 .getAllBySellContainsProduct_Buyer()
                 .stream()
                 .map(user -> {
-                    final UserFirstAndLastNamesAndSoldProductsDto userDto =
+                    UserFirstAndLastNamesAndSoldProductsDto userDto =
                             this.modelMapper.map(user, UserFirstAndLastNamesAndSoldProductsDto.class);
                     userDto.setSoldProducts(user
                             .getSell()

@@ -3,12 +3,13 @@ package cardealer.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(name = "customers")
 public class Customer extends BaseEntity {
 
     private String name;
-    private LocalDate birthDate;
+    private Date birthDate;
     private boolean isYoungDriver;
 
     public Customer(){
@@ -24,11 +25,11 @@ public class Customer extends BaseEntity {
     }
 
     @Column(name = "birth_date")
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return this.birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

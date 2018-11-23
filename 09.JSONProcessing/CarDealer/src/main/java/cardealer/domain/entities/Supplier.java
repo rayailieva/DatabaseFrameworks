@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class Supplier extends BaseEntity {
 
     private String name;
-    private boolean isImported;
+    private boolean isImporter;
 
     public Supplier(){
     }
@@ -21,12 +21,12 @@ public class Supplier extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "is_imported")
-    public boolean getisImported() {
-        return this.isImported;
+    @Column(name = "is_importer")
+    public boolean getisImporter() {
+        return this.isImporter;
     }
 
-    public void setisImported(boolean isImported) {
-        this.isImported = isImported;
+    public void setisImporter(boolean isImporter) {
+        this.isImporter = isImporter;
     }
 }
