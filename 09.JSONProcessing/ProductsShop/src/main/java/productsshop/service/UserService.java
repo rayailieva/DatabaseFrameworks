@@ -1,7 +1,8 @@
 package productsshop.service;
 
-import productsshop.domain.dtos.UserFirstAndLastNamesAndSoldProductsDto;
-import productsshop.domain.dtos.UserSeedDto;
+import productsshop.domain.dtos.view.UserFirstAndLastNamesAndSoldProductsDto;
+import productsshop.domain.dtos.seedDatabase.UserSeedDto;
+import productsshop.domain.dtos.view.UsersWithSalesListDto;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface UserService {
     List<UserFirstAndLastNamesAndSoldProductsDto> getSuccessfulSellers();
 
 
+    UsersWithSalesListDto getSellsByUser();
 }

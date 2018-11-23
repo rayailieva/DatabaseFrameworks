@@ -3,7 +3,10 @@ package productsshop.web.controllers;
 import com.google.gson.Gson;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
-import productsshop.domain.dtos.*;
+import productsshop.domain.dtos.seedDatabase.CategorySeedDto;
+import productsshop.domain.dtos.seedDatabase.ProductSeedDto;
+import productsshop.domain.dtos.seedDatabase.UserSeedDto;
+import productsshop.domain.dtos.view.*;
 import productsshop.service.CategoryService;
 import productsshop.service.ProductService;
 import productsshop.service.UserService;
@@ -44,9 +47,12 @@ public class ProductShopController implements CommandLineRunner {
        //this.seedProducts();
 
        //this.productsInRange();
-       //his.usersSoldProducts();
-       this.categoriesByProductsCount();
+      // this.usersSoldProducts();
+      // this.categoriesByProductsCount();
+        this.usersAndProducts();
     }
+
+
 
     private void seedUsers() throws IOException {
         String usersFileContent = this.fileIOUtil.readFile(USER_FILE_PATH);
@@ -85,9 +91,9 @@ public class ProductShopController implements CommandLineRunner {
     }
 
     private void usersSoldProducts() throws IOException {
-        List<UserFirstAndLastNamesAndSoldProductsDto> userFirstAndLastNamesAndSoldProductsDtos = this.userService.getSuccessfulSellers();
+        List<UserFirstAndLastNamesAndSoldProductsDto> usersSoldProductsDtos = this.userService.getSuccessfulSellers();
 
-        String soldProductsJson = this.gson.toJson(userFirstAndLastNamesAndSoldProductsDtos);
+        String soldProductsJson = this.gson.toJson(usersSoldProductsDtos);
 
         File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\users-sold-products.json");
 
@@ -97,15 +103,27 @@ public class ProductShopController implements CommandLineRunner {
     }
 
     private void categoriesByProductsCount() throws IOException {
-        List<CategoryNameProductsCountAverageAndTotalPricesDto> categoryNameProductsCountAverageAndTotalPricesDtos =
+        List<CategoriesByProductsDto> categoriesByProductsDtos =
                 this.categoryService.getCategoriesByProductsCount();
 
-        String categories = this.gson.toJson(categoryNameProductsCountAverageAndTotalPricesDtos);
+        String categories = this.gson.toJson(categoriesByProductsDtos);
 
         File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\categories-by-products.json");
 
         FileWriter writer = new FileWriter(file);
         writer.write(categories);
+        writer.close();
+    }
+
+    private void usersAndProducts() throws IOException {
+        UsersWithSalesListDto usersWithSalesListDtos =  this.userService.getSellsByUser();
+
+        String soldProductsJson = this.gson.toJson(usersWithSalesListDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\ProductsShop\\src\\main\\resources\\files\\output\\users-and-products.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(soldProductsJson);
         writer.close();
     }
 }

@@ -1,22 +1,20 @@
-package productsshop.domain.dtos;
+package productsshop.domain.dtos.view;
 
-import org.hibernate.validator.constraints.Length;
+import com.google.gson.annotations.Expose;
 
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ProductNamePriceBuyerFirstAndLastNamesDto {
 
-    @NotNull
-    @Length(min = 3)
+    @Expose
     private String name;
 
-    @NotNull
+    @Expose
     private BigDecimal price;
 
+    @Expose
     private String buyerFirstName;
 
-    @NotNull
-    @Length(min = 3)
+    @Expose
     private String buyerLastName;
 }

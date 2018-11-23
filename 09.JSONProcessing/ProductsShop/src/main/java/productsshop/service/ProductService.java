@@ -1,7 +1,7 @@
 package productsshop.service;
 
-import productsshop.domain.dtos.ProductInRangeDto;
-import productsshop.domain.dtos.ProductSeedDto;
+import productsshop.domain.dtos.view.ProductInRangeDto;
+import productsshop.domain.dtos.seedDatabase.ProductSeedDto;
 
 import java.math.BigDecimal;
 import java.util.List;

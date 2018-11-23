@@ -1,4 +1,4 @@
-package productsshop.domain.dtos;
+package productsshop.domain.dtos.seedDatabase;
 
 import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Length;

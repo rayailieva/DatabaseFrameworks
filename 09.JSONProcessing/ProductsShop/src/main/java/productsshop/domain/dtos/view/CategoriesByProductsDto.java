@@ -1,5 +1,6 @@
-package productsshop.domain.dtos;
+package productsshop.domain.dtos.view;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.hibernate.validator.constraints.Length;
 
@@ -7,23 +8,24 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class CategoryNameProductsCountAverageAndTotalPricesDto implements Serializable {
+public class CategoriesByProductsDto {
 
-    @NotNull
-    @Length(min = 3, max = 15)
-    @SerializedName("category")
+    @Expose
     private String name;
 
+    @Expose
     private Integer productsCount;
 
+    @Expose
     private Double averagePrice;
 
+    @Expose
     private BigDecimal totalRevenue;
 
-    public CategoryNameProductsCountAverageAndTotalPricesDto() {
+    public CategoriesByProductsDto() {
     }
 
-    public CategoryNameProductsCountAverageAndTotalPricesDto(@NotNull String name, Integer productsCount, Double averagePrice, BigDecimal totalRevenue) {
+    public CategoriesByProductsDto(String name, Integer productsCount, Double averagePrice, BigDecimal totalRevenue) {
         this.name = name;
         this.productsCount = productsCount;
         this.averagePrice = averagePrice;

@@ -1,4 +1,4 @@
-package productsshop.domain.dtos;
+package productsshop.domain.dtos.view;
 
 import com.google.gson.annotations.Expose;
 

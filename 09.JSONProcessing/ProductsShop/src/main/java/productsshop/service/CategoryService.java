@@ -1,7 +1,7 @@
 package productsshop.service;
 
-import productsshop.domain.dtos.CategoryNameProductsCountAverageAndTotalPricesDto;
-import productsshop.domain.dtos.CategorySeedDto;
+import productsshop.domain.dtos.view.CategoriesByProductsDto;
+import productsshop.domain.dtos.seedDatabase.CategorySeedDto;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ public interface CategoryService {
 
     void seedCategories(CategorySeedDto[] categorySeedDtos);
 
-    List<CategoryNameProductsCountAverageAndTotalPricesDto> getCategoriesByProductsCount();
+    List<CategoriesByProductsDto> getCategoriesByProductsCount();
 }
