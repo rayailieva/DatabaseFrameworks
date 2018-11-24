@@ -57,13 +57,14 @@ public class CarDealerController implements CommandLineRunner {
         //this.seedCars();
         // this.seedCustomers();
         //this.seedSales();
+
         //this.orderedCustomers();
         //this.getToyotaCars("Toyota");
         //this.getLocalSuppliers();
+        this.getCarsAndParts();
         //this.getCustomersTotalSales();
-        this.getSalesDiscounts();
+        //this.getSalesDiscounts();
     }
-
 
     private void seedSales() {
         this.salesService.generateSales();
@@ -137,6 +138,19 @@ public class CarDealerController implements CommandLineRunner {
         writer.write(localSuppliersJson);
         writer.close();
     }
+
+    private void getCarsAndParts() throws IOException {
+        List<CarPartsViewDto> carPartsViewDtos = this.carService.getCarsWithParts();
+
+        String carsPartsJson = this.gson.toJson(carPartsViewDtos);
+
+        File file = new File("C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\09.JSONProcessing\\CarDealer\\src\\main\\resources\\files\\output\\cars-and-parts.json");
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(carsPartsJson);
+        writer.close();
+    }
+
 
     private void getCustomersTotalSales() throws IOException {
         List<CustomerPurchasesViewDto> customerPurchasesViewDtos = this.customerService.getCustomersPurchases();

@@ -1,5 +1,6 @@
 package cardealer.service;
 
+import cardealer.domain.dtos.view.CarPartsViewDto;
 import cardealer.domain.dtos.view.CarViewDto;
 import cardealer.domain.dtos.binding.CarsSeedDto;
 import cardealer.domain.entities.Car;
@@ -14,4 +15,6 @@ public interface CarService {
 
 
     List<CarViewDto> getCarsByMake(String make);
+
+    List<CarPartsViewDto> getCarsWithParts();
 }

@@ -1,7 +1,9 @@
 package cardealer.service;
 
+import cardealer.domain.dtos.view.CarPartsViewDto;
 import cardealer.domain.dtos.view.CarViewDto;
 import cardealer.domain.dtos.binding.CarsSeedDto;
+import cardealer.domain.dtos.view.PartsViewDto;
 import cardealer.domain.entities.Car;
 import cardealer.repository.CarRepository;
 import cardealer.util.ValidatorUtil;
@@ -56,4 +58,21 @@ public class CarServiceImpl implements CarService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CarPartsViewDto> getCarsWithParts() {
+        return this.carRepository
+                .findAll()
+                .stream()
+                .map(car -> {
+                    CarPartsViewDto carView = new CarPartsViewDto();
+                    carView.setCar(this.modelMapper.map(car, CarViewDto.class));
+                    carView.setParts(car.getParts()
+                            .stream()
+                            .map(part -> this.modelMapper.map(part, PartsViewDto.class))
+                            .collect(Collectors.toSet())
+                    );
+                    return carView;
+                })
+                .collect(Collectors.toList());
+    }
 }
