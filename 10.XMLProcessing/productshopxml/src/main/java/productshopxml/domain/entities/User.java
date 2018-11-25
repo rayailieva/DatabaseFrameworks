@@ -1,6 +1,7 @@
 package productshopxml.domain.entities;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity(name = "users")
@@ -12,6 +13,7 @@ public class User extends BaseEntity{
     private List<User> friend;
 
     public User() {
+
     }
 
     @Column(name = "first_name")
@@ -41,7 +43,7 @@ public class User extends BaseEntity{
         this.age = age;
     }
 
-    @ManyToMany(targetEntity = User.class)
+    @ManyToMany(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_friends",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -54,4 +56,6 @@ public class User extends BaseEntity{
     public void setFriend(List<User> friend) {
         this.friend = friend;
     }
+
+
 }

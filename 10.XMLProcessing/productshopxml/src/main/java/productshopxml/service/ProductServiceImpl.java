@@ -57,6 +57,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductInRangeDto> productsInRange = new ArrayList<>();
         for(Product product : productEntities){
             ProductInRangeDto productInRangeDto = this.modelMapper.map(product, ProductInRangeDto.class);
+            productsInRange.add(productInRangeDto);
         }
         ProductInRangeRootDto productInRangeRootDto = new ProductInRangeRootDto();
         productInRangeRootDto.setProductsView(productsInRange);

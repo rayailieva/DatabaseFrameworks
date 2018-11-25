@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import productshopxml.domain.dtos.binding.CategorySeedRootDto;
 import productshopxml.domain.dtos.binding.ProductSeedRootDto;
 import productshopxml.domain.dtos.binding.UserSeedRootDto;
-import productshopxml.domain.dtos.view.ProductInRangeDto;
-import productshopxml.domain.dtos.view.ProductInRangeRootDto;
+import productshopxml.domain.dtos.view.*;
 import productshopxml.service.CategoryService;
 import productshopxml.service.ProductService;
 import productshopxml.service.UserService;
@@ -48,20 +47,12 @@ public class ProductShopController implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // System.out.println(this.seedXmlUsers());
+        //System.out.println(this.seedXmlUsers());
         //System.out.println(this.seedXmlProducts());
-        // System.out.println(this.seedXmlCategories());
+        //System.out.println(this.seedXmlCategories());
 
-        this.getAllProductsInRange();
-    }
-
-    private void getAllProductsInRange() throws JAXBException {
-        ProductInRangeRootDto products =
-                this.productService.getAvailableProductsInPriceRange(BigDecimal.valueOf(500), BigDecimal.valueOf(1000));
-
-        this.xmlParser.exportToXml(products, ProductInRangeRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\products-in-range.xml");
-
-
+        //this.getAllProductsInRange();
+            this.getCategoriesByProducts();
     }
 
     private String seedXmlUsers() throws JAXBException, FileNotFoundException {
@@ -87,5 +78,20 @@ public class ProductShopController implements CommandLineRunner {
         this.categoryService.seedCategories(categorySeedRootDto);
         return "Imported categories!";
     }
+
+    private void getAllProductsInRange() throws JAXBException {
+        ProductInRangeRootDto products =
+                this.productService.getAvailableProductsInPriceRange(BigDecimal.valueOf(500), BigDecimal.valueOf(1000));
+
+        this.xmlParser.exportToXml(products, ProductInRangeRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\products-in-range.xml");
+    }
+
+    private void getCategoriesByProducts() throws JAXBException {
+        List<CategoriesByProductsDto> categories =
+                this.categoryService.getCategoriesByProducts();
+
+        this.xmlParser.exportToXml(categories, CategoriesByProductsRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\categories-by-products.xml");
+    }
+
 
 }

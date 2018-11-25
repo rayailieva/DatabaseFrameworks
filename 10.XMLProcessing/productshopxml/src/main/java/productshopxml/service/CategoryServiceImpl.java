@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import productshopxml.domain.dtos.binding.CategorySeedDto;
 import productshopxml.domain.dtos.binding.CategorySeedRootDto;
+import productshopxml.domain.dtos.view.CategoriesByProductsDto;
 import productshopxml.domain.entities.Category;
 import productshopxml.repository.CategoryRepository;
 import productshopxml.util.ValidatorUtil;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
@@ -37,4 +38,6 @@ public class CategoryServiceImpl implements CategoryService{
             this.categoryRepository.saveAndFlush(categoryEntity);
         }
     }
+
+
 }
