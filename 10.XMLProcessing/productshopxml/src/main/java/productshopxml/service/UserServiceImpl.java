@@ -46,6 +46,33 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public UsersProductsRootDto getUsersSoldProducts() {
+        List<User> userEntities = this.userRepository.getAllBySellContainsProductBuyer();
+
+        List<UsersProductsDto> usersProductsDtos = new ArrayList<>();
+        for(User user : userEntities){
+            UsersProductsDto usersProductsDto = this.modelMapper.map(user, UsersProductsDto.class);
+
+            List<ProductBuyerDto> productBuyerDtos = new ArrayList<>();
+
+            for(Product product : user.getSoldProducts()){
+                ProductBuyerDto productBuyerDto = this.modelMapper.map(product, ProductBuyerDto.class);
+
+                productBuyerDtos.add(productBuyerDto);
+            }
+
+            ProductBuyerRootDto productBuyerRootDto = new ProductBuyerRootDto();
+            productBuyerRootDto.setProductView(productBuyerDtos);
+
+            usersProductsDtos.add(usersProductsDto);
+        }
+
+        UsersProductsRootDto usersProductsRootDto = new UsersProductsRootDto();
+        usersProductsRootDto.setUsersProductsDtos(usersProductsDtos);
+
+        return usersProductsRootDto;
+    }
 
 
 }

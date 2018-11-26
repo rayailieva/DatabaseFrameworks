@@ -47,12 +47,22 @@ public class ProductShopController implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //System.out.println(this.seedXmlUsers());
-        //System.out.println(this.seedXmlProducts());
-        //System.out.println(this.seedXmlCategories());
+       //System.out.println(this.seedXmlUsers());
+       //System.out.println(this.seedXmlProducts());
+       //System.out.println(this.seedXmlCategories());
 
         //this.getAllProductsInRange();
-            this.getCategoriesByProducts();
+       //this.getUsersSoldProducts();
+        this.getCategoriesByProducts();
+    }
+
+    private void getCategoriesByProducts() {
+    }
+
+    private void getUsersSoldProducts() throws JAXBException {
+        UsersProductsRootDto usersProductsRootDto = this.userService.getUsersSoldProducts();
+
+        this.xmlParser.exportToXml(usersProductsRootDto, UsersProductsRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\users-sold-products.xml");
     }
 
     private String seedXmlUsers() throws JAXBException, FileNotFoundException {
@@ -86,12 +96,7 @@ public class ProductShopController implements CommandLineRunner {
         this.xmlParser.exportToXml(products, ProductInRangeRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\products-in-range.xml");
     }
 
-    private void getCategoriesByProducts() throws JAXBException {
-        List<CategoriesByProductsDto> categories =
-                this.categoryService.getCategoriesByProducts();
 
-        this.xmlParser.exportToXml(categories, CategoriesByProductsRootDto.class, "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\10.XMLProcessing\\productshopxml\\src\\main\\resources\\files\\output\\categories-by-products.xml");
-    }
 
 
 }

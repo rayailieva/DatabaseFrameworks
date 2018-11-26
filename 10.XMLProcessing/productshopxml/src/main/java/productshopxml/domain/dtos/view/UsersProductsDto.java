@@ -16,7 +16,7 @@ public class UsersProductsDto {
 
     @XmlElementWrapper(name = "sold-products")
     @XmlElement(name = "product")
-    private List<ProductBuyerRootDto> productsSold;
+    private List<ProductBuyerDto> productsSold;
 
     public UsersProductsDto(){
         this.productsSold = new LinkedList<>();
@@ -39,11 +39,11 @@ public class UsersProductsDto {
     }
 
 
-    public List<ProductBuyerRootDto> getProductsSold() {
+    public List<ProductBuyerDto> getProductsSold() {
         return this.productsSold;
     }
 
-    public void setProductsSold(List<ProductBuyerRootDto> productsSold) {
+    public void setProductsSold(List<ProductBuyerDto> productsSold) {
         this.productsSold = productsSold;
     }
 }

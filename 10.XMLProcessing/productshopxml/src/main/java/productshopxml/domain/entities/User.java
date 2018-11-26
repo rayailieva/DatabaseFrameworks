@@ -11,6 +11,8 @@ public class User extends BaseEntity{
     private String lastName;
     private Integer age;
     private List<User> friend;
+    private List<Product> boughtProducts;
+    private List<Product> soldProducts;
 
     public User() {
 
@@ -43,7 +45,7 @@ public class User extends BaseEntity{
         this.age = age;
     }
 
-    @ManyToMany(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = User.class, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_friends",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -57,5 +59,27 @@ public class User extends BaseEntity{
         this.friend = friend;
     }
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_buys",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    public List<Product> getBoughtProducts() {
+        return this.boughtProducts;
+    }
 
+    public void setBoughtProducts(List<Product> boughtProducts) {
+        this.boughtProducts = boughtProducts;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "user_sells",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    public List<Product> getSoldProducts() {
+        return this.soldProducts;
+    }
+
+    public void setSoldProducts(List<Product> soldProducts) {
+        this.soldProducts = soldProducts;
+    }
 }

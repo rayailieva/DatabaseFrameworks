@@ -8,5 +8,5 @@ public interface UserService {
 
     void seedUsers(UserSeedRootDto userSeedRootDto);
 
-
+    UsersProductsRootDto getUsersSoldProducts();
 }

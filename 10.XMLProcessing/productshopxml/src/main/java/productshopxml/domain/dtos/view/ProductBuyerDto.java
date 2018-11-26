@@ -19,10 +19,10 @@ public class ProductBuyerDto {
     private BigDecimal price;
 
     @XmlElement(name = "buyer-first-name")
-    private User buyerFirstName;
+    private String buyerFirstName;
 
     @XmlElement(name = "buyer-last-name")
-    private User buyerLastName;
+    private String buyerLastName;
 
 
     public String getName() {
@@ -41,19 +41,20 @@ public class ProductBuyerDto {
         this.price = price;
     }
 
-    public User getBuyerFirstName() {
+
+    public String getBuyerFirstName() {
         return this.buyerFirstName;
     }
 
-    public void setBuyerFirstName(User buyerFirstName) {
+    public void setBuyerFirstName(String buyerFirstName) {
         this.buyerFirstName = buyerFirstName;
     }
 
-    public User getBuyerLastName() {
+    public String getBuyerLastName() {
         return this.buyerLastName;
     }
 
-    public void setBuyerLastName(User buyerLastName) {
+    public void setBuyerLastName(String buyerLastName) {
         this.buyerLastName = buyerLastName;
     }
 }

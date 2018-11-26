@@ -6,8 +6,10 @@ import productshopxml.domain.dtos.binding.ProductSeedDto;
 import productshopxml.domain.dtos.binding.ProductSeedRootDto;
 import productshopxml.domain.dtos.view.ProductInRangeDto;
 import productshopxml.domain.dtos.view.ProductInRangeRootDto;
+import productshopxml.domain.entities.Category;
 import productshopxml.domain.entities.Product;
 import productshopxml.domain.entities.User;
+import productshopxml.repository.CategoryRepository;
 import productshopxml.repository.ProductRepository;
 import productshopxml.repository.UserRepository;
 import productshopxml.util.ValidatorUtil;
@@ -16,18 +18,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
     private final ValidatorUtil validatorUtil;
     private final ModelMapper modelMapper;
 
-    public ProductServiceImpl(ProductRepository productRepository, UserRepository userRepository, ValidatorUtil validatorUtil, ModelMapper modelMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, UserRepository userRepository, ValidatorUtil validatorUtil, ModelMapper modelMapper) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
         this.validatorUtil = validatorUtil;
         this.modelMapper = modelMapper;
@@ -41,12 +44,18 @@ public class ProductServiceImpl implements ProductService {
                 continue;
             }
 
-            Product productEntity = this.modelMapper.map(productSeedDto, Product.class);
+            Product entity = this.modelMapper.map(productSeedDto, Product.class);
+            entity.setSeller(this.getRandomUser());
 
-            productEntity.setSeller(this.getRandomSeller());
-            productEntity.setBuyer(this.getRandomBuyer());
+            Random random = new Random();
 
-            this.productRepository.saveAndFlush(productEntity);
+            if (random.nextInt() % 13 != 0) {
+                entity.setBuyer(this.getRandomUser());
+            }
+
+            entity.setCategories(this.getRandomCategories());
+
+            this.productRepository.saveAndFlush(entity);
         }
     }
 
@@ -64,17 +73,23 @@ public class ProductServiceImpl implements ProductService {
         return productInRangeRootDto;
     }
 
-    private User getRandomBuyer() {
+    private User getRandomUser() {
         Random random = new Random();
-        int randomIndex = random.nextInt((int) (this.userRepository.count() - 1)) + 1;
 
-        return this.userRepository.findAll().get(randomIndex);
+        return this.userRepository.getOne(random.nextInt((int)this.userRepository.count() - 1) + 1);
     }
 
-    private User getRandomSeller() {
+    private List<Category> getRandomCategories() {
         Random random = new Random();
-        int randomIndex = random.nextInt((int) (this.userRepository.count() - 1)) + 1;
 
-        return this.userRepository.findAll().get(randomIndex);
+        List<Category> categories = new ArrayList<>();
+
+        int categoriesCount = random.nextInt((int)this.categoryRepository.count() - 1) + 1;
+
+        for (int i = 0; i < categoriesCount; i++) {
+            categories.add(this.categoryRepository.getOne(random.nextInt((int)this.categoryRepository.count() - 1) + 1));
+        }
+
+        return categories;
     }
 }
