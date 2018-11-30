@@ -1,8 +1,6 @@
 package softuni.mostwanted.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity(name = "race_entries")
 public class RaceEntry extends BaseEntity {
@@ -33,7 +31,7 @@ public class RaceEntry extends BaseEntity {
         this.finishTime = finishTime;
     }
 
-    @ManyToOne
+    @ManyToOne()
     public Car getCar() {
         return this.car;
     }
@@ -42,7 +40,7 @@ public class RaceEntry extends BaseEntity {
         this.car = car;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public Racer getRacer() {
         return this.racer;
     }
@@ -51,7 +49,8 @@ public class RaceEntry extends BaseEntity {
         this.racer = racer;
     }
 
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name = "race_id", referencedColumnName = "id")
     public Race getRace() {
         return this.race;
     }

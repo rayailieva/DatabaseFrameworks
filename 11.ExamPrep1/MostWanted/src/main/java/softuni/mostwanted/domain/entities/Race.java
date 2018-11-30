@@ -1,9 +1,6 @@
 package softuni.mostwanted.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -29,7 +26,7 @@ public class Race extends BaseEntity {
         this.laps = laps;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public District getDistrict() {
         return this.district;
     }
@@ -38,7 +35,7 @@ public class Race extends BaseEntity {
         this.district = district;
     }
 
-    @OneToMany(mappedBy = "race")
+    @OneToMany(mappedBy = "race", cascade = CascadeType.MERGE)
     public Set<RaceEntry> getEntries() {
         return this.entries;
     }

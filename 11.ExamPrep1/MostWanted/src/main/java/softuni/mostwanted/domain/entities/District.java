@@ -1,9 +1,6 @@
 package softuni.mostwanted.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "districts")
@@ -23,7 +20,7 @@ public class District extends BaseEntity {
         this.name = name;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public Town getTown() {
         return this.town;
     }

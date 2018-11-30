@@ -1,24 +1,24 @@
-package softuni.mostwanted.parser;
+package softuni.mostwanted.util;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
-public final class ValidationUtil {
+public class ValidatorUtilImpl implements ValidatorUtil{
     private Validator validator;
 
-    public ValidationUtil() {
+    public ValidatorUtilImpl() {
         this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-
-    public <O> Boolean isValid(O object) {
+    @Override
+    public <E> boolean isValid(E object) {
         return this.validator.validate(object).size() == 0;
     }
 
-
-    public <O> Set<ConstraintViolation<O>> violations(O object) {
+    @Override
+    public <E> Set<ConstraintViolation<E>> violations(E object) {
         return this.validator.validate(object);
     }
 }
