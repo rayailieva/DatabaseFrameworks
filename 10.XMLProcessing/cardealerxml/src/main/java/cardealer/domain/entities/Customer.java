@@ -46,6 +46,7 @@ public class Customer extends BaseEntity{
     }
 
     @OneToMany(targetEntity = Sale.class, mappedBy = "customer")
+    @Column(name = "sales")
     public List<Sale> getSales() {
         return this.sales;
     }

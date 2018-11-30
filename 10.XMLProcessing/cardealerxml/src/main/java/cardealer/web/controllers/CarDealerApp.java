@@ -41,11 +41,11 @@ public class CarDealerApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //this.importSuppliers();
-        //this.importParts();
-        //this.importCars();
-        //this.importCustomers();
-        //this.importSales();
+       this.importSuppliers();
+       this.importParts();
+       this.importCars();
+       this.importCustomers();
+       this.importSales();
 
         //this.exportCustomers();
         //this.exportToyotaCars();
