@@ -1,5 +1,13 @@
 package mostwanted.service;
 
+import mostwanted.common.Constants;
+import mostwanted.domain.dtos.EntryImportDto;
+import mostwanted.domain.dtos.RaceEntryImportDto;
+import mostwanted.domain.dtos.RaceImportDto;
+import mostwanted.domain.dtos.RaceImportRootDto;
+import mostwanted.domain.entities.District;
+import mostwanted.domain.entities.Race;
+import mostwanted.domain.entities.RaceEntry;
 import mostwanted.repository.DistrictRepository;
 import mostwanted.repository.RaceEntryRepository;
 import mostwanted.repository.RaceRepository;
@@ -10,7 +18,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RaceServiceImpl implements RaceService {
@@ -48,7 +60,45 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public String importRaces() {
-        return null;
+    public String importRaces() throws JAXBException, FileNotFoundException {
+        StringBuilder resultImport = new StringBuilder();
+
+        RaceImportRootDto raceImportRootDto =
+                this.xmlParser.parseXml(RaceImportRootDto.class, RACES_FILE_CONTENT);
+
+        for (RaceImportDto raceImportDto : raceImportRootDto.getRaceImportDtos()) {
+            District districtEntity = this.districtRepository.findByName(raceImportDto.getDistrict()).orElse(null);
+            if (!this.validationUtil.isValid(raceImportDto) || districtEntity == null) {
+                resultImport.append(Constants.INCORRECT_DATA_MESSAGE).append(System.lineSeparator());
+
+                continue;
+            }
+
+            Race raceEntity = this.modelMapper.map(raceImportDto, Race.class);
+            raceEntity.setDistrict(districtEntity);
+
+            List<RaceEntry> entries = new ArrayList<>();
+
+            for(EntryImportDto entryImportDto : raceImportDto.getEntryImportRootDto().getEntryImportDtos()){
+                RaceEntry raceEntryEntity = this.raceEntryRepository.findById(entryImportDto.getId()).orElse(null);
+
+                if(raceEntryEntity == null){
+                    resultImport.append(Constants.INCORRECT_DATA_MESSAGE).append(System.lineSeparator());
+
+                    continue;
+                }
+
+                raceEntryEntity.setRace(raceEntity);
+                entries.add(raceEntryEntity);
+            }
+
+            this.raceRepository.saveAndFlush(raceEntity);
+            resultImport.append(String.format(Constants.SUCCESSFUL_IMPORT_MESSAGE,
+                    raceEntity.getClass().getSimpleName(),
+                    raceEntity.getId()))
+                     .append(System.lineSeparator());
+        }
+
+        return resultImport.toString().trim();
     }
 }

@@ -3,6 +3,7 @@ package mostwanted.service;
 import com.google.gson.Gson;
 import mostwanted.common.Constants;
 import mostwanted.domain.dtos.RacerImportDto;
+import mostwanted.domain.entities.Car;
 import mostwanted.domain.entities.Racer;
 import mostwanted.domain.entities.Town;
 import mostwanted.repository.RacerRepository;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RacerServiceImpl implements RacerService {
@@ -83,6 +86,27 @@ public class RacerServiceImpl implements RacerService {
 
     @Override
     public String exportRacingCars() {
-        return null;
+        StringBuilder exportResult = new StringBuilder();
+
+        List<Racer> racers =
+                this.racerRepository.exportRacersWithCars();
+
+        racers.stream().forEach(racer -> {
+            exportResult.append(String.format("Name: %s", racer.getName())).append(System.lineSeparator());
+            if(racer.getAge() != null){
+                exportResult.append(String.format("Age: %d", racer.getAge())).append(System.lineSeparator());
+            }
+
+            exportResult.append("Cars: ").append(System.lineSeparator());
+
+            racer.getCars().stream().forEach(car -> {
+                exportResult.append(String.format("%s %s %d", car.getBrand(), car.getModel(), car.getYearOfProduction()))
+                        .append(System.lineSeparator());
+            });
+
+            exportResult.append(System.lineSeparator());
+        });
+
+        return exportResult.toString().trim();
     }
 }

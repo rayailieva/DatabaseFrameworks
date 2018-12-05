@@ -18,7 +18,7 @@ public class Racer extends BaseEntity {
     private List<Car> cars;
 
     public Racer(){
-        this.cars = new ArrayList<>();
+
     }
 
     @Column(name = "name", nullable = false, unique = true)

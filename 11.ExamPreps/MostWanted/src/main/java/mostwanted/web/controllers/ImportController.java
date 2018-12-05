@@ -122,7 +122,7 @@ public class ImportController extends BaseController {
     }
 
     @PostMapping("/races")
-    public ModelAndView importRacesConfirm() throws JAXBException {
+    public ModelAndView importRacesConfirm() throws JAXBException, FileNotFoundException {
         System.out.println(this.raceService.importRaces());
 
         return super.redirect("/import/xml");

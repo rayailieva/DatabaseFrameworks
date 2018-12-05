@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class TownServiceImpl implements TownService {
@@ -75,6 +76,15 @@ public class TownServiceImpl implements TownService {
 
     @Override
     public String exportRacingTowns() {
-        return null;
+        StringBuilder exportResult = new StringBuilder();
+        List<Town> towns =
+                this.townRepository.exportTowns();
+
+        towns.stream().forEach(town -> {
+            exportResult.append(String.format("Name: %s", town.getName())).append(System.lineSeparator());
+            exportResult.append(String.format("Racers: %d", town.getRacers().size())).append(System.lineSeparator());
+                });
+
+        return exportResult.toString().trim();
     }
 }

@@ -1,4 +1,4 @@
-package mostwanted.domain.dtos.race;
+package mostwanted.domain.dtos;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
