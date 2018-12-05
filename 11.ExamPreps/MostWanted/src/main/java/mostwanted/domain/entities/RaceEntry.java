@@ -1,5 +1,6 @@
 package mostwanted.domain.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -51,7 +52,7 @@ public class RaceEntry extends BaseEntity {
         this.racer = racer;
     }
 
-    @ManyToOne(targetEntity = Race.class)
+    @ManyToOne(targetEntity = Race.class, cascade = CascadeType.MERGE)
     public Race getRace() {
         return this.race;
     }
