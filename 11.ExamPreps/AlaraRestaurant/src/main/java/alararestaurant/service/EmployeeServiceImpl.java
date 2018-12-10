@@ -1,0 +1,86 @@
+package alararestaurant.service;
+
+import alararestaurant.constants.Constants;
+import alararestaurant.domain.dtos.EmployeeImportDto;
+import alararestaurant.domain.entities.Employee;
+import alararestaurant.domain.entities.Position;
+import alararestaurant.repository.EmployeeRepository;
+import alararestaurant.repository.PositionRepository;
+import alararestaurant.util.FileUtil;
+import alararestaurant.util.ValidationUtil;
+import com.google.gson.Gson;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+    private final static String EMPLOYEES_FILE_CONTENT =
+            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\AlaraRestaurant\\src\\main\\resources\\files\\employees.json";
+
+    private final EmployeeRepository employeeRepository;
+    private final FileUtil fileUtil;
+    private final ModelMapper modelMapper;
+    private final ValidationUtil validationUtil;
+    private final Gson gson;
+    private final PositionRepository positionRepository;
+
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, FileUtil fileUtil, ModelMapper modelMapper, ValidationUtil validationUtil, Gson gson, PositionRepository positionRepository) {
+        this.employeeRepository = employeeRepository;
+        this.fileUtil = fileUtil;
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
+        this.gson = gson;
+        this.positionRepository = positionRepository;
+    }
+
+    @Override
+    public Boolean employeesAreImported() {
+        return this.employeeRepository.count() > 0;
+    }
+
+    @Override
+    public String readEmployeesJsonFile() throws IOException {
+        return this.fileUtil.readFile(EMPLOYEES_FILE_CONTENT);
+    }
+
+    @Override
+    public String importEmployees(String employees) {
+       StringBuilder importResult = new StringBuilder();
+
+        EmployeeImportDto[] employeeImportDtos =
+                this.gson.fromJson(employees, EmployeeImportDto[].class);
+
+        for(EmployeeImportDto employeeImportDto : employeeImportDtos){
+
+            if(!this.validationUtil.isValid(employeeImportDto)){
+                importResult.append(Constants.INCORRECT_DATA_MESSAGE).append(System.lineSeparator());
+                continue;
+            }
+
+            Position positionEntity = this.positionRepository
+                    .findByName(employeeImportDto.getPosition())
+                    .orElse(null);
+
+            if (positionEntity == null) {
+                positionEntity = new Position();
+                positionEntity.setName(employeeImportDto.getPosition());
+                this.positionRepository.saveAndFlush(positionEntity);
+            }
+
+            Employee employee = this.modelMapper.map(employeeImportDto, Employee.class);
+            employee.setPosition(positionEntity);
+
+            this.employeeRepository.saveAndFlush(employee);
+
+            importResult.append(String.format("Record %s successfully imported", employee.getName()))
+                    .append(System.lineSeparator());
+        }
+
+       return importResult.toString().trim();
+    }
+}
