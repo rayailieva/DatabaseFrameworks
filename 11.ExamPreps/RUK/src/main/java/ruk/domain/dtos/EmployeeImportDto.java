@@ -3,20 +3,16 @@ package ruk.domain.dtos;
 import com.google.gson.annotations.Expose;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.Date;
 
-public class EmployeeImportDto{
+public class EmployeeImportDto {
 
     @Expose
     private String full_name;
-
     @Expose
-    private BigDecimal salary;
-
+    private Double salary;
     @Expose
     private Date started_on;
-
     @Expose
     private String branch_name;
 
@@ -31,11 +27,11 @@ public class EmployeeImportDto{
         this.full_name = full_name;
     }
 
-    public BigDecimal getSalary() {
+    public Double getSalary() {
         return this.salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 

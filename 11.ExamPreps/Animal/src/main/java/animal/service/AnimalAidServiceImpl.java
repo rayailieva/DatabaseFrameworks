@@ -1,6 +1,6 @@
 package animal.service;
 
-import animal.domain.dtos.json.AnimalAidImportDto;
+import animal.domain.dtos.AnimalAidImportDto;
 import animal.domain.entities.AnimalAid;
 import animal.repository.AnimalAidRepository;
 import animal.util.ValidatorUtil;
@@ -23,16 +23,16 @@ public class AnimalAidServiceImpl implements AnimalAidService {
     }
 
     @Override
-    public void importAnimalAids(AnimalAidImportDto[] animalAidImportDtos) {
+    public void importAnimalAid(AnimalAidImportDto[] animalAidImportDtos) {
+
         for(AnimalAidImportDto animalAidImportDto : animalAidImportDtos){
             if(!this.validatorUtil.isValid(animalAidImportDto)){
-                this.validatorUtil.violations(animalAidImportDto)
-                        .forEach(System.out::println);
+                System.out.println("ooops!");
                 continue;
             }
 
-            AnimalAid entity = this.modelMapper.map(animalAidImportDto, AnimalAid.class);
-            this.animalAidRepository.saveAndFlush(entity);
+            AnimalAid animalAid = this.modelMapper.map(animalAidImportDto, AnimalAid.class);
+            this.animalAidRepository.saveAndFlush(animalAid);
         }
     }
 }

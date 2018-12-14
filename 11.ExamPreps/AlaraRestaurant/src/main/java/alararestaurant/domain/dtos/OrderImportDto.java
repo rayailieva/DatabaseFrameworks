@@ -1,10 +1,11 @@
 package alararestaurant.domain.dtos;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @XmlRootElement(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -12,21 +13,19 @@ public class OrderImportDto {
 
     @XmlElement(name = "customer")
     private String customer;
-
     @XmlElement(name = "employee")
     private String employee;
-
     @XmlElement(name = "date-time")
     private String dateTime;
-
     @XmlElement(name = "type")
     private String type;
-
     @XmlElement(name = "items")
-    private ItemImportRootXmlDto itemImportRootXmlDto;
+    private ItemXmlImportRootDto itemXmlImportRootDto;
 
-    public OrderImportDto(){}
+    public OrderImportDto() {
+    }
 
+    @NotNull
     public String getCustomer() {
         return this.customer;
     }
@@ -35,6 +34,7 @@ public class OrderImportDto {
         this.customer = customer;
     }
 
+    @NotNull
     public String getEmployee() {
         return this.employee;
     }
@@ -59,11 +59,11 @@ public class OrderImportDto {
         this.type = type;
     }
 
-    public ItemImportRootXmlDto getItemImportRootXmlDto() {
-        return this.itemImportRootXmlDto;
+    public ItemXmlImportRootDto getItemXmlImportRootDto() {
+        return this.itemXmlImportRootDto;
     }
 
-    public void setItemImportRootXmlDto(ItemImportRootXmlDto itemImportRootXmlDto) {
-        this.itemImportRootXmlDto = itemImportRootXmlDto;
+    public void setItemXmlImportRootDto(ItemXmlImportRootDto itemXmlImportRootDto) {
+        this.itemXmlImportRootDto = itemXmlImportRootDto;
     }
 }

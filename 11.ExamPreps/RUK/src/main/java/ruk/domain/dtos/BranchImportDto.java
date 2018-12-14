@@ -3,7 +3,6 @@ package ruk.domain.dtos;
 import com.google.gson.annotations.Expose;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 public class BranchImportDto {
 

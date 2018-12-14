@@ -4,5 +4,5 @@ import ruk.domain.dtos.CardImportRootDto;
 
 public interface CardService {
 
-    void importCards(CardImportRootDto cardImportRootDto);
+    String importCards(CardImportRootDto cardImportRootDto);
 }

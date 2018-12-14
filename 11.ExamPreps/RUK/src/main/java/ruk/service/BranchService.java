@@ -4,5 +4,5 @@ import ruk.domain.dtos.BranchImportDto;
 
 public interface BranchService {
 
-    void importBranches(BranchImportDto[] branchImportDtos);
+    String importBranches(BranchImportDto[] branchImportDtos);
 }

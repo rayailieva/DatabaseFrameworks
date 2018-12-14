@@ -25,23 +25,17 @@ public class CategoryServiceImpl implements CategoryService {
                 this.categoryRepository.exportCategories();
 
         categories.forEach(category -> {
-            exportResult.append(String
-                    .format("Category: %s", category.getName()))
+            exportResult.append(String.format("Category: %s", category.getName()))
                     .append(System.lineSeparator());
-
             category.getItems().forEach(item -> {
-                exportResult.append(String
-                        .format("--- Item Name: %s", item.getName()))
+                exportResult.append(String.format("--- Item Name: %s", item.getName()))
+                        .append(System.lineSeparator())
+                        .append(String.format("--- Item Price: %.2f", item.getPrice()))
+                        .append(System.lineSeparator())
                         .append(System.lineSeparator());
-                exportResult.append(String
-                        .format("--- Item Price: %.2f", item.getPrice()))
-                        .append(System.lineSeparator());
-                exportResult.append(System.lineSeparator());
             });
-
-            exportResult.append(System.lineSeparator());
         });
 
-        return exportResult.toString().trim();
+         return exportResult.toString().trim();
     }
 }

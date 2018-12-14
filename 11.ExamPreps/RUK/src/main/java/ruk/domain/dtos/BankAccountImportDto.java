@@ -9,10 +9,8 @@ public class BankAccountImportDto {
 
     @XmlAttribute(name = "client")
     private String client;
-
     @XmlElement(name = "account-number")
     private String accountNumber;
-
     @XmlElement(name = "balance")
     private BigDecimal balance;
 

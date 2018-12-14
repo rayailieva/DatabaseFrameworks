@@ -4,5 +4,5 @@ import ruk.domain.dtos.ClientImportDto;
 
 public interface ClientService {
 
-    void importClients(ClientImportDto[] clientImportDtos);
+    String importClients(ClientImportDto[] clientImportDtos);
 }

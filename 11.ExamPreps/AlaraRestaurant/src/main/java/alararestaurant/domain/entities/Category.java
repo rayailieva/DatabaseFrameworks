@@ -1,5 +1,7 @@
 package alararestaurant.domain.entities;
 
+import alararestaurant.domain.entities.Base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ public class Category extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "category", targetEntity = Item.class)
+    @OneToMany(targetEntity = Item.class, mappedBy = "category")
     public List<Item> getItems() {
         return this.items;
     }

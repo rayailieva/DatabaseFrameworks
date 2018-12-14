@@ -1,33 +1,20 @@
 package animal.domain.entities;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity(name = "animals")
 public class Animal extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "type", nullable = false)
     private String type;
-
-    @Column(name = "age")
     private Integer age;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passport_serial_number", referencedColumnName = "serialNumber")
     private Passport passport;
 
-    @OneToMany(mappedBy = "animal")
-    private List<Procedure> procedures;
+    public Animal(){}
 
-    public Animal(){
-        this.procedures = new ArrayList<>();
-    }
-
+    @Column(name = "name", nullable = false)
     public String getName() {
         return this.name;
     }
@@ -36,6 +23,7 @@ public class Animal extends BaseEntity {
         this.name = name;
     }
 
+    @Column(name = "type", nullable = false)
     public String getType() {
         return this.type;
     }
@@ -44,6 +32,7 @@ public class Animal extends BaseEntity {
         this.type = type;
     }
 
+    @Column(name = "age")
     public Integer getAge() {
         return this.age;
     }
@@ -52,6 +41,7 @@ public class Animal extends BaseEntity {
         this.age = age;
     }
 
+    @OneToOne(targetEntity = Passport.class)
     public Passport getPassport() {
         return this.passport;
     }

@@ -1,9 +1,10 @@
 package alararestaurant.domain.entities;
 
+import alararestaurant.domain.entities.Base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "positions")
@@ -12,9 +13,7 @@ public class Position extends BaseEntity {
     private String name;
     private List<Employee> employees;
 
-    public Position(){
-        this.employees = new ArrayList<>();
-    }
+    public Position(){}
 
     @Column(name = "name", nullable = false, unique = true)
     public String getName() {
@@ -25,7 +24,7 @@ public class Position extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "position", targetEntity = Employee.class)
+    @OneToMany(targetEntity = Employee.class, mappedBy = "position")
     public List<Employee> getEmployees() {
         return this.employees;
     }

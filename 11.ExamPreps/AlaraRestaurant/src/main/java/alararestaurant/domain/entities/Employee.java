@@ -1,10 +1,12 @@
 package alararestaurant.domain.entities;
 
+import alararestaurant.domain.entities.Base.BaseEntity;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "employees")
-public class Employee extends BaseEntity{
+public class Employee extends BaseEntity {
 
     private String name;
     private Integer age;
@@ -41,7 +43,7 @@ public class Employee extends BaseEntity{
         this.position = position;
     }
 
-    @OneToMany(mappedBy = "employee", targetEntity = Order.class)
+    @OneToMany(targetEntity = Order.class)
     public List<Order> getOrders() {
         return this.orders;
     }

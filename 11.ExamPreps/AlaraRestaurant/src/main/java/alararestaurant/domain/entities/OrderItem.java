@@ -1,6 +1,6 @@
 package alararestaurant.domain.entities;
 
-import org.aspectj.weaver.ast.Or;
+import alararestaurant.domain.entities.Base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class OrderItem extends BaseEntity {
     }
 
     @ManyToOne(targetEntity = Item.class)
-    @JoinColumn(name = "item_id", referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
     public Item getItem() {
         return this.item;
     }

@@ -1,17 +1,17 @@
-package ruk.domain.entities;
+package alararestaurant.domain.entities.Base;
 
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class BaseEntity  {
+public class BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
     public BaseEntity(){}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Integer getId() {
         return this.id;
     }

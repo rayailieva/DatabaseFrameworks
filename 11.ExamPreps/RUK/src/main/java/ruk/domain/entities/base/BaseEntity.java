@@ -1,4 +1,4 @@
-package alararestaurant.domain.entities;
+package ruk.domain.entities.base;
 
 import javax.persistence.*;
 

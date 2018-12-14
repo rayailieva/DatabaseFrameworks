@@ -1,24 +1,26 @@
-package alararestaurant.domain.dtos;
+package animal.domain.dtos;
 
 import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class EmployeeImportDto {
+public class AnimalImportDto {
 
     @Expose
     private String name;
     @Expose
+    private String type;
+    @Expose
     private Integer age;
     @Expose
-    private String position;
+    private PassportImportDto passport;
 
-    public EmployeeImportDto(){}
+    public AnimalImportDto() {
+    }
 
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 20)
     @NotNull
     public String getName() {
         return this.name;
@@ -28,9 +30,16 @@ public class EmployeeImportDto {
         this.name = name;
     }
 
-    @Min(15)
-    @Max(80)
-    @NotNull
+    @Length(min = 3, max = 20)
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Min(1)
     public Integer getAge() {
         return this.age;
     }
@@ -39,12 +48,12 @@ public class EmployeeImportDto {
         this.age = age;
     }
 
-    @NotNull
-    public String getPosition() {
-        return this.position;
+
+    public PassportImportDto getPassport() {
+        return this.passport;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPassport(PassportImportDto passport) {
+        this.passport = passport;
     }
 }

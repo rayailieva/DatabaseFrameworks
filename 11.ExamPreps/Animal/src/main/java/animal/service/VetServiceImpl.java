@@ -1,37 +1,39 @@
 package animal.service;
 
-import animal.domain.dtos.xml.VetImportDto;
-import animal.domain.dtos.xml.VetImportRootDto;
+import animal.domain.dtos.VetImportDto;
+import animal.domain.dtos.VetImportRootDto;
 import animal.domain.entities.Vet;
 import animal.repository.VetRepository;
 import animal.util.ValidatorUtil;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VetServiceImpl implements VetService {
 
     private final VetRepository vetRepository;
-    private final ValidatorUtil validatorUtil;
     private final ModelMapper modelMapper;
+    private final ValidatorUtil validatorUtil;
 
-    public VetServiceImpl(VetRepository vetRepository, ValidatorUtil validatorUtil, ModelMapper modelMapper) {
+    @Autowired
+    public VetServiceImpl(VetRepository vetRepository, ModelMapper modelMapper, ValidatorUtil validatorUtil) {
         this.vetRepository = vetRepository;
-        this.validatorUtil = validatorUtil;
         this.modelMapper = modelMapper;
+        this.validatorUtil = validatorUtil;
     }
 
     @Override
     public void importVets(VetImportRootDto vetImportRootDto) {
+
         for(VetImportDto vetImportDto : vetImportRootDto.getVetImportDtos()){
             if(!this.validatorUtil.isValid(vetImportDto)){
-                this.validatorUtil.violations(vetImportDto)
-                        .forEach(System.out::println);
+                System.out.println("vet error!");
                 continue;
             }
 
-            Vet entity = this.modelMapper.map(vetImportDto, Vet.class);
-            this.vetRepository.saveAndFlush(entity);
+            Vet vet = this.modelMapper.map(vetImportDto, Vet.class);
+            this.vetRepository.saveAndFlush(vet);
         }
     }
 }

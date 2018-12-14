@@ -1,5 +1,7 @@
 package alararestaurant.domain.entities;
 
+import alararestaurant.domain.entities.Base.BaseEntity;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,7 +25,7 @@ public class Item extends BaseEntity {
         this.name = name;
     }
 
-    @ManyToOne(targetEntity = Category.class)
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     public Category getCategory() {
         return this.category;
@@ -42,7 +44,7 @@ public class Item extends BaseEntity {
         this.price = price;
     }
 
-    @OneToMany(mappedBy = "item", targetEntity = OrderItem.class)
+    @OneToMany(targetEntity = OrderItem.class, mappedBy = "item")
     public List<OrderItem> getOrderItems() {
         return this.orderItems;
     }

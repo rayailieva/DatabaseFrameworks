@@ -1,5 +1,7 @@
 package ruk.domain.entities;
 
+import ruk.domain.entities.base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -7,19 +9,13 @@ import javax.persistence.OneToOne;
 @Entity(name = "clients")
 public class Client extends BaseEntity {
 
-
-    @Column(name = "full_name", nullable = false)
     private String fullName;
-
-    @Column(name = "age")
     private Integer age;
-
-    @OneToOne(targetEntity = BankAccount.class)
     private BankAccount bankAccount;
 
-    public Client(){
-    }
+    public Client(){}
 
+    @Column(name = "full_name", nullable = false)
     public String getFullName() {
         return this.fullName;
     }
@@ -28,6 +24,7 @@ public class Client extends BaseEntity {
         this.fullName = fullName;
     }
 
+    @Column(name = "age")
     public Integer getAge() {
         return this.age;
     }
@@ -36,6 +33,7 @@ public class Client extends BaseEntity {
         this.age = age;
     }
 
+    @OneToOne(targetEntity = BankAccount.class)
     public BankAccount getBankAccount() {
         return this.bankAccount;
     }

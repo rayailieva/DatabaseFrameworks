@@ -12,7 +12,8 @@ public class BankAccountImportRootDto {
     @XmlElement(name = "bank-account")
     private BankAccountImportDto[] bankAccountImportDtos;
 
-    public BankAccountImportRootDto(){}
+    public BankAccountImportRootDto() {
+    }
 
     public BankAccountImportDto[] getBankAccountImportDtos() {
         return this.bankAccountImportDtos;

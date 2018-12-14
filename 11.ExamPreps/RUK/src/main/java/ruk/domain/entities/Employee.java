@@ -1,42 +1,26 @@
 package ruk.domain.entities;
 
-import org.hibernate.annotations.JoinColumnOrFormula;
+import ruk.domain.entities.base.BaseEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "employees")
 public class Employee extends BaseEntity {
 
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "salary")
     private BigDecimal salary;
-
-    @Column(name = "started_on")
     private Date startedOn;
-
-    @ManyToOne(targetEntity = Branch.class)
-    @JoinColumn(name = "branch", nullable = false)
     private Branch branch;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "employees_clients",
-             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
-             inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"))
     private List<Client> clients;
 
-    public Employee(){
-        this.clients = new ArrayList<>();
-    }
+    public Employee(){}
 
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return this.firstName;
     }
@@ -45,6 +29,7 @@ public class Employee extends BaseEntity {
         this.firstName = firstName;
     }
 
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return this.lastName;
     }
@@ -53,6 +38,7 @@ public class Employee extends BaseEntity {
         this.lastName = lastName;
     }
 
+    @Column(name = "salary")
     public BigDecimal getSalary() {
         return this.salary;
     }
@@ -61,6 +47,7 @@ public class Employee extends BaseEntity {
         this.salary = salary;
     }
 
+    @Column(name = "started_on")
     public Date getStartedOn() {
         return this.startedOn;
     }
@@ -69,6 +56,8 @@ public class Employee extends BaseEntity {
         this.startedOn = startedOn;
     }
 
+    @ManyToOne(targetEntity = Branch.class)
+    @JoinColumn(name = "branch_id", referencedColumnName = "id", nullable = false)
     public Branch getBranch() {
         return this.branch;
     }
@@ -77,6 +66,10 @@ public class Employee extends BaseEntity {
         this.branch = branch;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Client.class)
+    @JoinTable(name = "employees_clients",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"))
     public List<Client> getClients() {
         return this.clients;
     }

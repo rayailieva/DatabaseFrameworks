@@ -1,8 +1,9 @@
-package animal.domain.dtos.xml;
+package animal.domain.dtos;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,26 +15,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VetImportDto {
 
-    @NotNull
-    @Length(min = 3, max = 40)
+    @XmlElement(name = "name")
     private String name;
-
-    @NotNull
-    @Length(min = 3, max = 50)
+    @XmlElement(name = "profession")
     private String profession;
-
-    @NotNull
-    @Range(min = 22, max = 65)
+    @XmlElement(name = "age")
     private Integer age;
-
-    @NotNull
-    @Pattern(regexp = "^(?:\\+359|0)\\d{9}$")
     @XmlElement(name = "phone-number")
     private String phoneNumber;
 
     public VetImportDto() {
     }
 
+    @Length(min = 3, max = 40)
     public String getName() {
         return this.name;
     }
@@ -42,6 +36,7 @@ public class VetImportDto {
         this.name = name;
     }
 
+    @Length(min = 3, max = 50)
     public String getProfession() {
         return this.profession;
     }
@@ -50,6 +45,8 @@ public class VetImportDto {
         this.profession = profession;
     }
 
+    @Min(22)
+    @Max(65)
     public Integer getAge() {
         return this.age;
     }
@@ -58,6 +55,8 @@ public class VetImportDto {
         this.age = age;
     }
 
+    @Pattern(regexp = "^(?:\\+359|0)\\d{9}$")
+    @NotNull
     public String getPhoneNumber() {
         return this.phoneNumber;
     }

@@ -11,10 +11,11 @@ import ruk.repository.BankAccountRepository;
 import ruk.repository.ClientRepository;
 import ruk.util.ValidatorUtil;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class BankAccountServiceImpl implements BankAccountService {
+public class BankAccountServiceImpl implements BankAccountService{
 
     private final BankAccountRepository bankAccountRepository;
     private final ClientRepository clientRepository;
@@ -30,27 +31,36 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public void implementBankAccounts(BankAccountImportRootDto bankAccountImportRootDto) {
-        for(BankAccountImportDto bankAccountImportDto : bankAccountImportRootDto.getBankAccountImportDtos()){
-            if(!this.validatorUtil.isValid(bankAccountImportDto)){
-                this.validatorUtil.violations(bankAccountImportDto)
-                        .forEach(System.out::println);
-                continue;
+    public String importBankAccounts(BankAccountImportRootDto bankAccountImportRootDto) {
+        StringBuilder importResult = new StringBuilder();
+
+        for (BankAccountImportDto bankAccountImportDto : bankAccountImportRootDto.getBankAccountImportDtos()) {
+            if (!this.validatorUtil.isValid(bankAccountImportDto)) {
+                importResult.append("Error: Incorrect Data!")
+                        .append(System.lineSeparator());
+                break;
             }
 
-            List<Client> clients =
-                    this.clientRepository.getAllByFullName(bankAccountImportDto.getClient());
-            if(clients.isEmpty()){
+            List<Client> clients = this.clientRepository.findAllByFullName(bankAccountImportDto.getClient());
+            if (clients.isEmpty()) {
                 System.out.println("error!");
                 continue;
             }
 
-            BankAccount bankAccount = this.modelMapper.map(bankAccountImportDto, BankAccount.class);
+            BankAccount bankAccount = new BankAccount();
+            bankAccount.setAccountNumber(bankAccountImportDto.getAccountNumber());
             bankAccount.setClient(clients.get(0));
+            bankAccount.setBalance(bankAccountImportDto.getBalance());
 
             this.bankAccountRepository.saveAndFlush(bankAccount);
 
-            clients.forEach(c -> c.setBankAccount(bankAccount));
+            for (Client client : clients) {
+                client.setBankAccount(bankAccount);
+                this.clientRepository.saveAndFlush(client);
+            }
+
         }
+            return importResult.toString().trim();
+
     }
 }

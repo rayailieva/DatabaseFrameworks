@@ -1,7 +1,7 @@
 package alararestaurant.service;
 
 import alararestaurant.constants.Constants;
-import alararestaurant.domain.dtos.ItemImportXmlDto;
+import alararestaurant.domain.dtos.ItemXmlImportDto;
 import alararestaurant.domain.dtos.OrderImportDto;
 import alararestaurant.domain.dtos.OrderImportRootDto;
 import alararestaurant.domain.entities.Employee;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,21 +35,23 @@ public class OrderServiceImpl implements OrderService {
             "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\AlaraRestaurant\\src\\main\\resources\\files\\orders.xml";
 
     private final OrderRepository orderRepository;
-    private final OrderItemRepository orderItemRepository;
     private final EmployeeRepository employeeRepository;
     private final ItemRepository itemRepository;
-    private final FileUtil fileUtil;
+    private final OrderItemRepository orderItemRepository;
+    private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
+    private final FileUtil fileUtil;
     private final XmlParser xmlParser;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, OrderItemRepository orderItemRepository, EmployeeRepository employeeRepository, ItemRepository itemRepository, FileUtil fileUtil,ValidationUtil validationUtil, XmlParser xmlParser) {
+    public OrderServiceImpl(OrderRepository orderRepository, EmployeeRepository employeeRepository, ItemRepository itemRepository, OrderItemRepository orderItemRepository, ModelMapper modelMapper, ValidationUtil validationUtil, FileUtil fileUtil, XmlParser xmlParser) {
         this.orderRepository = orderRepository;
-        this.orderItemRepository = orderItemRepository;
         this.employeeRepository = employeeRepository;
         this.itemRepository = itemRepository;
-        this.fileUtil = fileUtil;
+        this.orderItemRepository = orderItemRepository;
+        this.modelMapper = modelMapper;
         this.validationUtil = validationUtil;
+        this.fileUtil = fileUtil;
         this.xmlParser = xmlParser;
     }
 
@@ -63,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String importOrders() throws JAXBException, FileNotFoundException {
+    public String importOrders() throws JAXBException, ParseException, FileNotFoundException {
         StringBuilder importResult = new StringBuilder();
 
         OrderImportRootDto orderImportRootDto =
@@ -77,8 +80,7 @@ public class OrderServiceImpl implements OrderService {
 
 
             if(!this.validationUtil.isValid(orderImportDto) || employee == null){
-                importResult.append(Constants.INCORRECT_DATA_MESSAGE)
-                        .append(System.lineSeparator());
+                importResult.append(Constants.INCORRECT_DATA_MESSAGE).append(System.lineSeparator());
                 continue;
             }
 
@@ -91,9 +93,9 @@ public class OrderServiceImpl implements OrderService {
             Boolean hasInvalidItem = false;
             List<OrderItem> orderItems = new ArrayList<>();
 
-            for(ItemImportXmlDto itemImportXmlDto : orderImportDto.getItemImportRootXmlDto().getItemImportXmlDtos()) {
+            for(ItemXmlImportDto itemXmlImportDto : orderImportDto.getItemXmlImportRootDto().getItemXmlImportDtos()){
                 Item item = this.itemRepository
-                        .findByName(itemImportXmlDto.getName())
+                        .findByName(itemXmlImportDto.getName())
                         .orElse(null);
 
                 if(item == null){
@@ -104,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
                 OrderItem orderItem = new OrderItem();
                 orderItem.setOrder(order);
                 orderItem.setItem(item);
-                orderItem.setQuantity(itemImportXmlDto.getQuantity());
+                orderItem.setQuantity(itemXmlImportDto.getQuantity());
 
                 orderItems.add(orderItem);
             }
@@ -133,29 +135,20 @@ public class OrderServiceImpl implements OrderService {
     public String exportOrdersFinishedByTheBurgerFlippers() {
         StringBuilder exportResult = new StringBuilder();
 
-        List<Order> orders = this.orderRepository.findAllOrdersByBurgerFlippers("Burger Flipper");
+        List<Order> orders = this.orderRepository.exportOrders("Burger Flipper");
 
         orders.forEach(order -> {
-            exportResult.append(String
-                    .format("Name: %s", order.getEmployee().getName())).append(System.lineSeparator())
-                    .append("Orders: ").append(System.lineSeparator())
-                    .append(String.format("\tCustomer: %s", order.getCustomer())).append(System.lineSeparator())
-                    .append("\tItems: ").append(System.lineSeparator());
+            exportResult.append(String.format("Name: %s", order.getEmployee().getName())).append(System.lineSeparator())
+                    .append("Orders:").append(System.lineSeparator())
+                    .append(String.format("\tCustomer: %s", order.getCustomer())).append(System.lineSeparator());
 
             order.getOrderItems().forEach(orderItem -> {
-                exportResult
-                        .append(String.format("\t\tName: %s",
-                                 orderItem.getItem().getName())).append(System.lineSeparator())
-                        .append(String.format("\t\tPrice: %.2f",
-                                orderItem.getItem().getPrice())).append(System.lineSeparator())
-                        .append(String.format("\t\tQuantity: %d",
-                                orderItem.getQuantity())).append(System.lineSeparator())
+                exportResult.append("\tItems:").append(System.lineSeparator())
+                        .append(String.format("\t\tName: %s", orderItem.getItem().getName())).append(System.lineSeparator())
+                        .append(String.format("\t\tPrice: %.2f", orderItem.getItem().getPrice())).append(System.lineSeparator())
+                        .append(String.format("\t\tQuantity: %s", orderItem.getQuantity())).append(System.lineSeparator())
                         .append(System.lineSeparator());
-
             });
-
-            exportResult.append(System.lineSeparator());
-
         });
 
         return exportResult.toString().trim();

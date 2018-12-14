@@ -10,13 +10,5 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    Employee findOneByFirstNameAndLastName(String firstName, String lastName);
-
-    @Query("" +
-    "SELECT e "+
-    "FROM ruk.domain.entities.Employee e " +
-    "JOIN e.clients c " +
-    "GROUP BY e " +
-    "ORDER BY SIZE(e.clients) DESC, e.id ")
-    List<Employee> getAllTopEmployees();
+    Employee findOneByFirstNameAndLastName(final String firstName, final String lastName);
 }

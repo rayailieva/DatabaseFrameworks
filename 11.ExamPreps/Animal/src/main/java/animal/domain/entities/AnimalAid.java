@@ -5,16 +5,14 @@ import javax.persistence.Entity;
 import java.math.BigDecimal;
 
 @Entity(name = "animal_aids")
-public class AnimalAid extends BaseEntity {
+public class AnimalAid extends BaseEntity{
 
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "price")
     private BigDecimal price;
 
     public AnimalAid(){}
 
+    @Column(name = "name")
     public String getName() {
         return this.name;
     }
@@ -23,6 +21,7 @@ public class AnimalAid extends BaseEntity {
         this.name = name;
     }
 
+    @Column(name = "price")
     public BigDecimal getPrice() {
         return this.price;
     }

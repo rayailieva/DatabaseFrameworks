@@ -1,5 +1,7 @@
 package ruk.domain.entities;
 
+import ruk.domain.entities.base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -7,17 +9,13 @@ import javax.persistence.ManyToOne;
 @Entity(name = "cards")
 public class Card extends BaseEntity {
 
-    @Column(name = "card_number", nullable = false)
     private String cardNumber;
-
-    @Column(name = "card_status", nullable = false)
     private String cardStatus;
-
-    @ManyToOne(targetEntity = BankAccount.class)
     private BankAccount bankAccount;
 
     public Card(){}
 
+    @Column(name = "card_number", nullable = false)
     public String getCardNumber() {
         return this.cardNumber;
     }
@@ -26,6 +24,7 @@ public class Card extends BaseEntity {
         this.cardNumber = cardNumber;
     }
 
+    @Column(name = "card_status", nullable = false)
     public String getCardStatus() {
         return this.cardStatus;
     }
@@ -34,6 +33,7 @@ public class Card extends BaseEntity {
         this.cardStatus = cardStatus;
     }
 
+    @ManyToOne(targetEntity = BankAccount.class)
     public BankAccount getBankAccount() {
         return this.bankAccount;
     }

@@ -1,27 +1,21 @@
-package alararestaurant.domain.dtos;
+package animal.domain.dtos;
 
 import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-public class ItemImportJsonDto {
+public class AnimalAidImportDto {
 
     @Expose
     private String name;
-
     @Expose
     private BigDecimal price;
 
-    @Expose
-    private String category;
+    public AnimalAidImportDto(){}
 
-    public ItemImportJsonDto(){}
-
-    @NotNull
-    @Length(min = 3, max = 30)
+    @Length(min = 3)
     public String getName() {
         return this.name;
     }
@@ -30,23 +24,12 @@ public class ItemImportJsonDto {
         this.name = name;
     }
 
-    @NotNull
-    @DecimalMin("0.01")
+    @DecimalMin("1")
     public BigDecimal getPrice() {
         return this.price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    @NotNull
-    @Length(min = 3, max = 30)
-    public String getCategory() {
-        return this.category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

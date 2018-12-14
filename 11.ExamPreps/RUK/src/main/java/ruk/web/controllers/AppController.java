@@ -1,6 +1,7 @@
 package ruk.web.controllers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import ruk.domain.dtos.*;
@@ -27,14 +28,14 @@ public class AppController implements CommandLineRunner {
             "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\RUK\\src\\main\\resources\\files\\xml\\input\\cards.xml";
 
 
-    private final BranchService branchService;
-    private final EmployeeService employeeService;
-    private final ClientService clientService;
-    private final BankAccountService bankAccountService;
-    private final CardService cardService;
-    private final FileIOUtil fileIOUtil;
-    private final Gson gson;
-    private final XmlParser xmlParser;
+   private final BranchService branchService;
+   private final EmployeeService employeeService;
+   private final ClientService clientService;
+   private final BankAccountService bankAccountService;
+   private final CardService cardService;
+   private final FileIOUtil fileIOUtil;
+   private final Gson gson;
+   private final XmlParser xmlParser;
 
     public AppController(BranchService branchService, EmployeeService employeeService, ClientService clientService, BankAccountService bankAccountService, CardService cardService, FileIOUtil fileIOUtil, Gson gson, XmlParser xmlParser) {
         this.branchService = branchService;
@@ -43,13 +44,13 @@ public class AppController implements CommandLineRunner {
         this.bankAccountService = bankAccountService;
         this.cardService = cardService;
         this.fileIOUtil = fileIOUtil;
-        this.gson = gson;
+        this.gson =  gson;
         this.xmlParser = xmlParser;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        //this.importBranches();
+       //this.importBranches();
         //this.importEmployees();
         //this.importClients();
         //this.importBankAccounts();
@@ -67,7 +68,7 @@ public class AppController implements CommandLineRunner {
         BankAccountImportRootDto bankAccountImportRootDto =
                 this.xmlParser.parseXml(BankAccountImportRootDto.class, BANK_ACCOUNTS_FILE_PATH);
 
-        this.bankAccountService.implementBankAccounts(bankAccountImportRootDto);
+        this.bankAccountService.importBankAccounts(bankAccountImportRootDto);
     }
 
     private void importClients() throws IOException {
@@ -93,4 +94,6 @@ public class AppController implements CommandLineRunner {
                 this.gson.fromJson(branchesFileContent, BranchImportDto[].class);
         this.branchService.importBranches(branchImportDtos);
     }
+
+
 }

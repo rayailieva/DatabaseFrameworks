@@ -8,15 +8,12 @@ public class CardImportDto {
 
     @XmlAttribute(name = "status")
     private String status;
-
     @XmlAttribute(name = "account-number")
     private String accountNumber;
-
     @XmlElement(name = "card-number")
     private String cardNumber;
 
-    public CardImportDto() {
-    }
+    public CardImportDto(){}
 
     public String getStatus() {
         return this.status;

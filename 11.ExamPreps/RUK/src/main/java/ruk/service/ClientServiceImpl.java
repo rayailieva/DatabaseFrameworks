@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ruk.domain.dtos.ClientImportDto;
+import ruk.domain.entities.Branch;
 import ruk.domain.entities.Client;
 import ruk.domain.entities.Employee;
 import ruk.repository.ClientRepository;
@@ -27,12 +28,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void importClients(ClientImportDto[] clientImportDtos) {
+    public String importClients(ClientImportDto[] clientImportDtos) {
+        StringBuilder importResult = new StringBuilder();
+
         for(ClientImportDto clientImportDto : clientImportDtos){
             if(!this.validatorUtil.isValid(clientImportDto)){
-                this.validatorUtil.violations(clientImportDto)
-                        .forEach(System.out::println);
-                continue;
+                importResult.append("Error: Incorrect Data!")
+                        .append(System.lineSeparator());
+                break;
             }
 
             String[] employeeNames = clientImportDto.getAppointed_employee().split("\\s+");
@@ -45,6 +48,9 @@ public class ClientServiceImpl implements ClientService {
             this.clientRepository.saveAndFlush(client);
 
             employee.getClients().add(client);
+
         }
+
+        return importResult.toString().trim();
     }
 }

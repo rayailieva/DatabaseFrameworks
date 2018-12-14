@@ -1,5 +1,7 @@
 package alararestaurant.domain.entities;
 
+import alararestaurant.domain.entities.Base.BaseEntity;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Order extends BaseEntity {
 
     public Order(){}
 
-    @Column(name = "customer",nullable = false)
+    @Column(name = "customer", nullable = false)
     public String getCustomer() {
         return this.customer;
     }
@@ -52,7 +54,7 @@ public class Order extends BaseEntity {
         this.employee = employee;
     }
 
-    @OneToMany(mappedBy = "order", targetEntity = OrderItem.class)
+    @OneToMany(targetEntity = OrderItem.class, mappedBy = "order")
     public List<OrderItem> getOrderItems() {
         return this.orderItems;
     }

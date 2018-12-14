@@ -6,17 +6,15 @@ public class ClientImportDto {
 
     @Expose
     private String first_name;
-
     @Expose
     private String last_name;
-
     @Expose
     private Integer age;
-
     @Expose
     private String appointed_employee;
 
     public ClientImportDto(){}
+
 
     public String getFirst_name() {
         return this.first_name;

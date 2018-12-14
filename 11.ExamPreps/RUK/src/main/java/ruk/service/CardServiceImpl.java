@@ -12,7 +12,7 @@ import ruk.repository.CardRepository;
 import ruk.util.ValidatorUtil;
 
 @Service
-public class CardImportServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
     private final BankAccountRepository bankAccountRepository;
@@ -20,7 +20,7 @@ public class CardImportServiceImpl implements CardService{
     private final ValidatorUtil validatorUtil;
 
     @Autowired
-    public CardImportServiceImpl(CardRepository cardRepository, BankAccountRepository bankAccountRepository, ModelMapper modelMapper, ValidatorUtil validatorUtil) {
+    public CardServiceImpl(CardRepository cardRepository, BankAccountRepository bankAccountRepository, ModelMapper modelMapper, ValidatorUtil validatorUtil) {
         this.cardRepository = cardRepository;
         this.bankAccountRepository = bankAccountRepository;
         this.modelMapper = modelMapper;
@@ -28,25 +28,31 @@ public class CardImportServiceImpl implements CardService{
     }
 
     @Override
-    public void importCards(CardImportRootDto cardImportRootDto) {
+    public String importCards(CardImportRootDto cardImportRootDto) {
+        StringBuilder importResult = new StringBuilder();
+
         for(CardImportDto cardImportDto : cardImportRootDto.getCardImportDtos()){
             if(!this.validatorUtil.isValid(cardImportDto)){
-                this.validatorUtil.violations(cardImportDto)
-                        .forEach(System.out::println);
-                continue;
+                importResult.append("Error: Incorrect Data!")
+                        .append(System.lineSeparator());
+                break;
             }
-            BankAccount bankAccount = this.bankAccountRepository.findOneByAccountNumber(cardImportDto.getAccountNumber());
+
+            BankAccount bankAccount =
+                    this.bankAccountRepository.findOneByAccountNumber(cardImportDto.getAccountNumber());
 
             if(bankAccount == null){
                 System.out.println("error!");
                 continue;
             }
+
             Card card = this.modelMapper.map(cardImportDto, Card.class);
             card.setBankAccount(bankAccount);
 
             this.cardRepository.saveAndFlush(card);
 
-            bankAccount.getCards().add(card);
         }
+
+        return importResult.toString().trim();
     }
 }

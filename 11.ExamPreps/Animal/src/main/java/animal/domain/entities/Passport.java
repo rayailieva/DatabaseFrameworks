@@ -1,33 +1,24 @@
 package animal.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "passports")
 public class Passport {
 
-    @Id
-    @Column(length = 10, nullable = false)
     private String serialNumber;
-
-    @OneToOne
     private Animal animal;
-
-    @Column(name = "owner_phone_number", nullable = false)
     private String ownerPhoneNumber;
-
-    @Column(name = "owner_name")
     private String ownerName;
-
-    @Column(name = "registered_on")
     private Date registrationDate;
 
-    public Passport() {
-    }
+    public Passport(){}
 
+    @Id
+    @Column(name = "serial_number")
     public String getSerialNumber() {
         return this.serialNumber;
     }
@@ -36,6 +27,7 @@ public class Passport {
         this.serialNumber = serialNumber;
     }
 
+    @OneToOne(cascade = CascadeType.ALL)
     public Animal getAnimal() {
         return this.animal;
     }
@@ -44,6 +36,7 @@ public class Passport {
         this.animal = animal;
     }
 
+    @Column(name = "owner_phone_number")
     public String getOwnerPhoneNumber() {
         return this.ownerPhoneNumber;
     }
@@ -52,6 +45,7 @@ public class Passport {
         this.ownerPhoneNumber = ownerPhoneNumber;
     }
 
+    @Column(name = "owner_name")
     public String getOwnerName() {
         return this.ownerName;
     }
@@ -60,6 +54,7 @@ public class Passport {
         this.ownerName = ownerName;
     }
 
+    @Column(name = "registration_date")
     public Date getRegistrationDate() {
         return this.registrationDate;
     }

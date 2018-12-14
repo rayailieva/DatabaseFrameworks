@@ -1,33 +1,23 @@
 package animal.domain.entities;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "procedures")
 public class Procedure extends BaseEntity {
 
-    @ManyToOne
-    private Animal animal;
-
-    @ManyToOne
-    private Vet vet;
-
-    @Column(name = "date_performed")
-    private Date date;
-
-    @ManyToMany
-    @JoinTable(name = "animal_aids_procedures",
-    joinColumns = {@JoinColumn(name = "animal_aid_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "procedure_id", referencedColumnName = "id")})
     private List<AnimalAid> services;
+    private Animal animal;
+    private Vet vet;
+    private LocalDate date;
 
-    public Procedure(){
-        this.services = new ArrayList<>();
-    }
+    public Procedure(){}
 
+    @ManyToMany(targetEntity = AnimalAid.class, cascade = CascadeType.ALL)
+    @JoinTable(name = "animal_aids_procedures",
+    joinColumns = @JoinColumn(name = "animal_aid_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "procedure_id", referencedColumnName = "id"))
     public List<AnimalAid> getServices() {
         return this.services;
     }
@@ -36,6 +26,7 @@ public class Procedure extends BaseEntity {
         this.services = services;
     }
 
+    @OneToOne(targetEntity = Animal.class)
     public Animal getAnimal() {
         return this.animal;
     }
@@ -44,6 +35,7 @@ public class Procedure extends BaseEntity {
         this.animal = animal;
     }
 
+    @ManyToOne(targetEntity = Vet.class)
     public Vet getVet() {
         return this.vet;
     }
@@ -52,18 +44,12 @@ public class Procedure extends BaseEntity {
         this.vet = vet;
     }
 
-    public Date getDate() {
+    @Column(name = "date_performed")
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public BigDecimal getCost() {
-        return this.services
-                .stream()
-                .map(AnimalAid::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

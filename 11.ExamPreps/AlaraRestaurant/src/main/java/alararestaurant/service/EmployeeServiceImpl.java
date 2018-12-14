@@ -18,24 +18,24 @@ import java.io.IOException;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final static String EMPLOYEES_FILE_CONTENT =
-            "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\AlaraRestaurant\\src\\main\\resources\\files\\employees.json";
+    private static final String EMPLOYEES_FILE_CONTENT =
+    "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\AlaraRestaurant\\src\\main\\resources\\files\\employees.json";
 
     private final EmployeeRepository employeeRepository;
-    private final FileUtil fileUtil;
+    private final PositionRepository positionRepository;
     private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
+    private final FileUtil fileUtil;
     private final Gson gson;
-    private final PositionRepository positionRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, FileUtil fileUtil, ModelMapper modelMapper, ValidationUtil validationUtil, Gson gson, PositionRepository positionRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, PositionRepository positionRepository, ModelMapper modelMapper, ValidationUtil validationUtil, FileUtil fileUtil, Gson gson) {
         this.employeeRepository = employeeRepository;
-        this.fileUtil = fileUtil;
+        this.positionRepository = positionRepository;
         this.modelMapper = modelMapper;
         this.validationUtil = validationUtil;
+        this.fileUtil = fileUtil;
         this.gson = gson;
-        this.positionRepository = positionRepository;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String importEmployees(String employees) {
-       StringBuilder importResult = new StringBuilder();
+        StringBuilder importResult = new StringBuilder();
 
         EmployeeImportDto[] employeeImportDtos =
                 this.gson.fromJson(employees, EmployeeImportDto[].class);
@@ -62,25 +62,22 @@ public class EmployeeServiceImpl implements EmployeeService {
                 continue;
             }
 
-            Position positionEntity = this.positionRepository
-                    .findByName(employeeImportDto.getPosition())
-                    .orElse(null);
+            Position positionEntity = this.positionRepository.findOneByName(employeeImportDto.getPosition()).orElse(null);
 
-            if (positionEntity == null) {
+            if(positionEntity == null){
                 positionEntity = new Position();
                 positionEntity.setName(employeeImportDto.getPosition());
                 this.positionRepository.saveAndFlush(positionEntity);
             }
 
-            Employee employee = this.modelMapper.map(employeeImportDto, Employee.class);
-            employee.setPosition(positionEntity);
+            Employee employeeEntity = this.modelMapper.map(employeeImportDto, Employee.class);
+            employeeEntity.setPosition(positionEntity);
+            this.employeeRepository.saveAndFlush(employeeEntity);
 
-            this.employeeRepository.saveAndFlush(employee);
-
-            importResult.append(String.format("Record %s successfully imported", employee.getName()))
+            importResult.append(String.format("Record %s successfully imported", employeeEntity.getName()))
                     .append(System.lineSeparator());
         }
 
-       return importResult.toString().trim();
+        return importResult.toString().trim();
     }
 }

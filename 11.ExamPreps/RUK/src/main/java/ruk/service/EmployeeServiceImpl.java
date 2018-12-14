@@ -10,6 +10,12 @@ import ruk.repository.BranchRepository;
 import ruk.repository.EmployeeRepository;
 import ruk.util.ValidatorUtil;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -27,23 +33,34 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void importEmployees(EmployeeImportDto[] employeeImportDtos) {
+    public String importEmployees(EmployeeImportDto[] employeeImportDtos) {
+        StringBuilder importResult = new StringBuilder();
+
         for(EmployeeImportDto employeeImportDto : employeeImportDtos){
+            if(!this.validatorUtil.isValid(employeeImportDto)){
+                importResult.append("Error: Incorrect Data!")
+                        .append(System.lineSeparator());
+                break;
+            }
+
+            Branch branch = this.branchRepository.findOneByName(employeeImportDto.getBranch_name());
 
             String[] names = employeeImportDto.getFull_name().split("\\s+");
 
-            Branch branch = this.branchRepository.findOneByName(employeeImportDto.getBranch_name());
-            if(branch == null){
-                System.out.println("Incorrect data!");
-                continue;
-            }
             Employee employee = this.modelMapper.map(employeeImportDto, Employee.class);
-
             employee.setFirstName(names[0]);
             employee.setLastName(names[1]);
             employee.setBranch(branch);
+            employee.setStartedOn(employeeImportDto.getStarted_on());
 
             this.employeeRepository.saveAndFlush(employee);
+
+            importResult.append(String.format("Successfully imported Employee - %s %s",
+                    employee.getFirstName(), employee.getLastName()))
+                    .append(System.lineSeparator());
+
         }
+
+        return importResult.toString().trim();
     }
 }

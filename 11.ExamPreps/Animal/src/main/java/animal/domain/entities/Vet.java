@@ -1,34 +1,20 @@
 package animal.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "vets")
-public class Vet extends BaseEntity{
+public class Vet extends BaseEntity {
 
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "profession")
     private String profession;
-
-    @Column(name = "age")
     private Integer age;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
-    @OneToMany(mappedBy = "vet")
     private List<Procedure> procedures;
 
-    public Vet() {
-        this.procedures = new ArrayList<>();
-    }
+    public Vet(){}
 
+    @Column(name = "name")
     public String getName() {
         return this.name;
     }
@@ -37,6 +23,7 @@ public class Vet extends BaseEntity{
         this.name = name;
     }
 
+    @Column(name = "profession")
     public String getProfession() {
         return this.profession;
     }
@@ -45,6 +32,7 @@ public class Vet extends BaseEntity{
         this.profession = profession;
     }
 
+    @Column(name = "age")
     public Integer getAge() {
         return this.age;
     }
@@ -53,11 +41,21 @@ public class Vet extends BaseEntity{
         this.age = age;
     }
 
+    @Column(name = "phone_number")
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @OneToMany(targetEntity = Procedure.class, mappedBy = "vet", fetch = FetchType.EAGER)
+    public List<Procedure> getProcedures() {
+        return this.procedures;
+    }
+
+    public void setProcedures(List<Procedure> procedures) {
+        this.procedures = procedures;
     }
 }
