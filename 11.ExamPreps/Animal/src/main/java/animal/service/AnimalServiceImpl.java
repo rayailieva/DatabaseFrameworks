@@ -42,16 +42,24 @@ public class AnimalServiceImpl implements AnimalService {
                 continue;
             }
 
-            Passport passport = this.modelMapper.map(passportImportDto, Passport.class);
+            Passport passport = this.passportRepository
+                    .findOneBySerialNumber(passportImportDto.getSerialNumber())
+                    .orElse(null);
+
+            if(passport != null){
+                continue;
+            }
+
+            passport = this.modelMapper.map(passportImportDto, Passport.class);
             Animal animal = this.modelMapper.map(animalImportDto, Animal.class);
 
-           passport.setAnimal(animal);
+            animal.setPassport(passport);
+
+            this.animalRepository.saveAndFlush(animal);
+
+            passport.setAnimal(animal);
+
             this.passportRepository.saveAndFlush(passport);
-
-
-          animal.setPassport(passport);
-
-          this.animalRepository.saveAndFlush(animal);
 
         }
     }

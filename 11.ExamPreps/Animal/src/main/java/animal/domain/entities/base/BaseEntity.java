@@ -1,9 +1,9 @@
-package animal.domain.entities;
+package animal.domain.entities.base;
 
 import javax.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
 
     private Integer id;
 

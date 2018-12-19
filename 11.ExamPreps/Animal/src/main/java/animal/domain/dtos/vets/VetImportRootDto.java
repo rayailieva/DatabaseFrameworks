@@ -1,4 +1,4 @@
-package animal.domain.dtos;
+package animal.domain.dtos.vets;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

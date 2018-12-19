@@ -1,35 +1,42 @@
 package ruk.domain.dtos;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import javax.validation.constraints.NotNull;
 
 public class ClientImportDto {
 
     @Expose
-    private String first_name;
+    @SerializedName(value = "first_name")
+    private String firstName;
     @Expose
-    private String last_name;
+    @SerializedName(value = "last_name")
+    private String lastName;
     @Expose
+    @SerializedName(value = "age")
     private Integer age;
     @Expose
-    private String appointed_employee;
+    @SerializedName(value = "appointed_employee")
+    private String employee;
 
     public ClientImportDto(){}
 
-
-    public String getFirst_name() {
-        return this.first_name;
+    @NotNull
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return this.last_name;
+    public String getLastName() {
+        return this.lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Integer getAge() {
@@ -40,11 +47,11 @@ public class ClientImportDto {
         this.age = age;
     }
 
-    public String getAppointed_employee() {
-        return this.appointed_employee;
+    public String getEmployee() {
+        return this.employee;
     }
 
-    public void setAppointed_employee(String appointed_employee) {
-        this.appointed_employee = appointed_employee;
+    public void setEmployee(String employee) {
+        this.employee = employee;
     }
 }

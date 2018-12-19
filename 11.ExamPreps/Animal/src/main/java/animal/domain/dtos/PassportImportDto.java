@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 public class PassportImportDto {
 
@@ -15,7 +16,7 @@ public class PassportImportDto {
     @Expose
     private String ownerPhoneNumber;
     @Expose
-    private String registrationDate;
+    private Date registrationDate;
 
     public PassportImportDto(){}
 
@@ -48,11 +49,11 @@ public class PassportImportDto {
         this.ownerPhoneNumber = ownerPhoneNumber;
     }
 
-    public String getRegistrationDate() {
+    public Date getRegistrationDate() {
         return this.registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 }

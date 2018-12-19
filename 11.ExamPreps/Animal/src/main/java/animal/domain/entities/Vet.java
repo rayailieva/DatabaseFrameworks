@@ -1,5 +1,7 @@
 package animal.domain.entities;
 
+import animal.domain.entities.base.BaseEntity;
+
 import javax.persistence.*;
 import java.util.List;
 

@@ -4,5 +4,5 @@ import animal.domain.dtos.AnimalAidImportDto;
 
 public interface AnimalAidService {
 
-    void importAnimalAid(AnimalAidImportDto[] animalAidImportDtos);
+    void importAnimalAids(AnimalAidImportDto[] animalAidImportDtos);
 }

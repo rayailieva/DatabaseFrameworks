@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnimalAidServiceImpl implements AnimalAidService {
+public class AnimalAidServiceImpl implements AnimalAidService{
 
     private final AnimalAidRepository animalAidRepository;
     private final ModelMapper modelMapper;
@@ -23,15 +23,16 @@ public class AnimalAidServiceImpl implements AnimalAidService {
     }
 
     @Override
-    public void importAnimalAid(AnimalAidImportDto[] animalAidImportDtos) {
+    public void importAnimalAids(AnimalAidImportDto[] animalAidImportDtos) {
 
         for(AnimalAidImportDto animalAidImportDto : animalAidImportDtos){
             if(!this.validatorUtil.isValid(animalAidImportDto)){
-                System.out.println("ooops!");
+                System.out.println("error");
                 continue;
             }
 
             AnimalAid animalAid = this.modelMapper.map(animalAidImportDto, AnimalAid.class);
+
             this.animalAidRepository.saveAndFlush(animalAid);
         }
     }

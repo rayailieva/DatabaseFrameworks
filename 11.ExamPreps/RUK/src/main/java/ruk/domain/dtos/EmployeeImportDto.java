@@ -1,54 +1,60 @@
 package ruk.domain.dtos;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class EmployeeImportDto {
 
     @Expose
-    private String full_name;
+    @SerializedName(value = "full_name")
+    private String fullName;
     @Expose
-    private Double salary;
+    @SerializedName(value = "salary")
+    private BigDecimal salary;
     @Expose
-    private Date started_on;
+    @SerializedName(value = "started_on")
+    private Date startedOn;
     @Expose
-    private String branch_name;
+    @SerializedName(value = "branch_name")
+    private String branchName;
 
     public EmployeeImportDto(){}
 
     @NotNull
-    public String getFull_name() {
-        return this.full_name;
+    public String getFullName() {
+        return this.fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return this.salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
-    public Date getStarted_on() {
-        return this.started_on;
+    public Date getStartedOn() {
+        return this.startedOn;
     }
 
-    public void setStarted_on(Date started_on) {
-        this.started_on = started_on;
+    public void setStartedOn(Date startedOn) {
+        this.startedOn = startedOn;
     }
 
     @NotNull
-    public String getBranch_name() {
-        return this.branch_name;
+    public String getBranchName() {
+        return this.branchName;
     }
 
-    public void setBranch_name(String branch_name) {
-        this.branch_name = branch_name;
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 }

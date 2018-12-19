@@ -4,7 +4,6 @@ import ruk.domain.entities.base.BaseEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,8 @@ public class Employee extends BaseEntity {
     private Branch branch;
     private List<Client> clients;
 
-    public Employee(){}
+    public Employee() {
+    }
 
     @Column(name = "first_name", nullable = false)
     public String getFirstName() {
@@ -57,7 +57,7 @@ public class Employee extends BaseEntity {
     }
 
     @ManyToOne(targetEntity = Branch.class)
-    @JoinColumn(name = "branch_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "branch_id",referencedColumnName = "id", nullable = false)
     public Branch getBranch() {
         return this.branch;
     }
@@ -66,10 +66,12 @@ public class Employee extends BaseEntity {
         this.branch = branch;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Client.class)
-    @JoinTable(name = "employees_clients",
+    @ManyToMany(targetEntity = Client.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "employees_clients",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id")
+    )
     public List<Client> getClients() {
         return this.clients;
     }

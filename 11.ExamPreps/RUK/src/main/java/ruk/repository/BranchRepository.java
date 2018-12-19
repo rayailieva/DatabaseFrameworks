@@ -7,5 +7,5 @@ import ruk.domain.entities.Branch;
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Integer> {
 
-    Branch findOneByName(String name);
+    Branch findByName(String branch);
 }

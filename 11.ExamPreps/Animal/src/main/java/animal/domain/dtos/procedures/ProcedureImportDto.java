@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 @XmlRootElement(name = "procedure")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -14,9 +15,12 @@ public class ProcedureImportDto {
     @XmlElement(name = "animal")
     private String animal;
     @XmlElement(name = "animal-aids")
-    private AnimalAidXmlImportRootDto animalAidXmlImportRootDto;
+    private AidImportRootDto animalAids;
+    @XmlElement(name = "date")
+    private Date date;
 
-    public ProcedureImportDto(){}
+    public ProcedureImportDto() {
+    }
 
     public String getVet() {
         return this.vet;
@@ -34,11 +38,19 @@ public class ProcedureImportDto {
         this.animal = animal;
     }
 
-    public AnimalAidXmlImportRootDto getAnimalAidXmlImportRootDto() {
-        return this.animalAidXmlImportRootDto;
+    public AidImportRootDto getAnimalAids() {
+        return this.animalAids;
     }
 
-    public void setAnimalAidXmlImportRootDto(AnimalAidXmlImportRootDto animalAidXmlImportRootDto) {
-        this.animalAidXmlImportRootDto = animalAidXmlImportRootDto;
+    public void setAnimalAids(AidImportRootDto animalAids) {
+        this.animalAids = animalAids;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

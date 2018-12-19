@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VetRepository extends JpaRepository<Vet, Integer> {
 
-    Optional<Vet> findByName(String name);
+    Optional<Vet> findOneByName(String name);
 }

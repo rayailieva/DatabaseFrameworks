@@ -1,7 +1,7 @@
 package animal.service;
 
-import animal.domain.dtos.VetImportDto;
-import animal.domain.dtos.VetImportRootDto;
+import animal.domain.dtos.vets.VetImportDto;
+import animal.domain.dtos.vets.VetImportRootDto;
 import animal.domain.entities.Vet;
 import animal.repository.VetRepository;
 import animal.util.ValidatorUtil;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VetServiceImpl implements VetService {
+public class VetServiceImpl implements VetService{
 
     private final VetRepository vetRepository;
     private final ModelMapper modelMapper;
@@ -27,8 +27,8 @@ public class VetServiceImpl implements VetService {
     public void importVets(VetImportRootDto vetImportRootDto) {
 
         for(VetImportDto vetImportDto : vetImportRootDto.getVetImportDtos()){
-            if(!this.validatorUtil.isValid(vetImportDto)){
-                System.out.println("vet error!");
+            if (!this.validatorUtil.isValid(vetImportDto)) {
+                System.out.println("invalid vet!");
                 continue;
             }
 

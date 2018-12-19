@@ -1,8 +1,9 @@
 package animal.domain.entities;
+import javax.persistence.*;
 
-import javax.persistence.Column;
+import animal.domain.entities.base.BaseEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity(name = "animals")
 public class Animal extends BaseEntity {
@@ -41,7 +42,7 @@ public class Animal extends BaseEntity {
         this.age = age;
     }
 
-    @OneToOne(targetEntity = Passport.class)
+    @OneToOne(targetEntity = Passport.class, cascade = CascadeType.ALL)
     public Passport getPassport() {
         return this.passport;
     }
@@ -49,4 +50,5 @@ public class Animal extends BaseEntity {
     public void setPassport(Passport passport) {
         this.passport = passport;
     }
+
 }

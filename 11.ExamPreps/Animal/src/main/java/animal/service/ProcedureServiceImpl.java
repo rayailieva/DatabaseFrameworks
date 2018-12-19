@@ -1,16 +1,10 @@
 package animal.service;
 
-import animal.domain.dtos.procedures.AnimalAidXmlImportDto;
+import animal.domain.dtos.procedures.AidImportDto;
 import animal.domain.dtos.procedures.ProcedureImportDto;
 import animal.domain.dtos.procedures.ProcedureImportRootDto;
-import animal.domain.entities.Animal;
-import animal.domain.entities.AnimalAid;
-import animal.domain.entities.Procedure;
-import animal.domain.entities.Vet;
-import animal.repository.AnimalAidRepository;
-import animal.repository.AnimalRepository;
-import animal.repository.ProcedureRepository;
-import animal.repository.VetRepository;
+import animal.domain.entities.*;
+import animal.repository.*;
 import animal.util.ValidatorUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +17,19 @@ import java.util.List;
 public class ProcedureServiceImpl implements ProcedureService {
 
     private final ProcedureRepository procedureRepository;
+    private final AnimalAidRepository animalAidRepository;
     private final AnimalRepository animalRepository;
+    private final PassportRepository passportRepository;
     private final VetRepository vetRepository;
     private final ModelMapper modelMapper;
     private final ValidatorUtil validatorUtil;
 
     @Autowired
-    public ProcedureServiceImpl(ProcedureRepository procedureRepository, AnimalRepository animalRepository, VetRepository vetRepository, AnimalAidRepository animalAidRepository, ModelMapper modelMapper, ValidatorUtil validatorUtil) {
+    public ProcedureServiceImpl(ProcedureRepository procedureRepository, AnimalAidRepository animalAidRepository, AnimalRepository animalRepository, PassportRepository passportRepository, VetRepository vetRepository, ModelMapper modelMapper, ValidatorUtil validatorUtil) {
         this.procedureRepository = procedureRepository;
+        this.animalAidRepository = animalAidRepository;
         this.animalRepository = animalRepository;
+        this.passportRepository = passportRepository;
         this.vetRepository = vetRepository;
         this.modelMapper = modelMapper;
         this.validatorUtil = validatorUtil;
@@ -42,34 +40,33 @@ public class ProcedureServiceImpl implements ProcedureService {
 
         for(ProcedureImportDto procedureImportDto : procedureImportRootDto.getProcedureImportDtos()){
 
-            if(!this.validatorUtil.isValid(procedureImportDto)){
-                System.out.println("something went wrong!");
-                continue;
-            }
+            Passport passport = this.passportRepository.findOneBySerialNumber(procedureImportDto.getAnimal()).orElse(null);
+            Animal animal = this.animalRepository.findOneByPassport(passport).orElse(null);
+            Vet vet = this.vetRepository.findOneByName(procedureImportDto.getVet()).orElse(null);
 
-            Animal animal = this.animalRepository.findByPassport(procedureImportDto.getAnimal()).orElse(null);
-            Vet vet = this.vetRepository.findByName(procedureImportDto.getVet()).orElse(null);
-
-            if(vet == null || animal == null){
-                System.out.println("null error");
+            if (!this.validatorUtil.isValid(procedureImportDto) || vet == null || animal == null) {
+                System.out.println("error");
                 continue;
             }
 
             Procedure procedure = this.modelMapper.map(procedureImportDto, Procedure.class);
-            procedure.setAnimal(animal);
             procedure.setVet(vet);
+            procedure.setAnimal(animal);
 
             List<AnimalAid> animalAids = new ArrayList<>();
-            for(AnimalAidXmlImportDto animalAidXmlImportDto : procedureImportDto.getAnimalAidXmlImportRootDto().getAnimalAidXmlImportDtos()){
+            for(AidImportDto aidImportDto : procedureImportDto.getAnimalAids().getAidImportDtos()){
 
-                if(!this.validatorUtil.isValid(animalAidXmlImportDto)){
-                    System.out.println("something went wrong");
+                AnimalAid animalAid = this.animalAidRepository.findOneByName(aidImportDto.getName()).orElse(null);
+
+                if(animalAid == null){
+                    System.out.println("error");
                     continue;
                 }
 
-                AnimalAid animalAid = this.modelMapper.map(animalAidXmlImportDto, AnimalAid.class);
+                animalAid = this.modelMapper.map(aidImportDto, AnimalAid.class);
                 animalAids.add(animalAid);
             }
+
 
             procedure.setServices(animalAids);
             this.procedureRepository.saveAndFlush(procedure);

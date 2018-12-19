@@ -2,10 +2,7 @@ package ruk.domain.entities;
 
 import ruk.domain.entities.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class BankAccount extends BaseEntity {
     private Client client;
     private List<Card> cards;
 
-    public BankAccount(){}
+    public BankAccount(){ }
 
     @Column(name = "account_number", nullable = false)
     public String getAccountNumber() {
@@ -37,7 +34,7 @@ public class BankAccount extends BaseEntity {
         this.balance = balance;
     }
 
-    @OneToOne(targetEntity = Client.class)
+    @OneToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
     public Client getClient() {
         return this.client;
     }

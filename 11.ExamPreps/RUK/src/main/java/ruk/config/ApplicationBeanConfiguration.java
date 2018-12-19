@@ -1,12 +1,12 @@
 package ruk.config;
 
+import ruk.util.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import ruk.util.*;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.SimpleDateFormat;
@@ -23,7 +23,7 @@ public class ApplicationBeanConfiguration {
     public Gson gson() {
         return new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
-                .setDateFormat("dd-MM-yyyy")
+                .setDateFormat("yyyy-MM-dd")
                 .setPrettyPrinting()
                 .create();
     }

@@ -1,5 +1,6 @@
-package ruk.domain.dtos;
+package ruk.domain.dtos.bankaccounts;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 
@@ -25,6 +26,7 @@ public class BankAccountImportDto {
         this.client = client;
     }
 
+    @NotNull
     public String getAccountNumber() {
         return this.accountNumber;
     }

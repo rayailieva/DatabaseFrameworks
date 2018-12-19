@@ -1,5 +1,7 @@
 package animal.domain.entities;
 
+import animal.domain.entities.base.BaseEntity;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,8 +18,8 @@ public class Procedure extends BaseEntity {
 
     @ManyToMany(targetEntity = AnimalAid.class, cascade = CascadeType.ALL)
     @JoinTable(name = "animal_aids_procedures",
-    joinColumns = @JoinColumn(name = "animal_aid_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "procedure_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "animal_aid_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "procedure_id", referencedColumnName = "id"))
     public List<AnimalAid> getServices() {
         return this.services;
     }

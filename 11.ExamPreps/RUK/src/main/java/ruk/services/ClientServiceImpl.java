@@ -1,10 +1,9 @@
-package ruk.service;
+package ruk.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ruk.domain.dtos.ClientImportDto;
-import ruk.domain.entities.Branch;
 import ruk.domain.entities.Client;
 import ruk.domain.entities.Employee;
 import ruk.repository.ClientRepository;
@@ -28,29 +27,27 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public String importClients(ClientImportDto[] clientImportDtos) {
-        StringBuilder importResult = new StringBuilder();
+    public void importClients(ClientImportDto[] clientImportDtos) {
 
         for(ClientImportDto clientImportDto : clientImportDtos){
             if(!this.validatorUtil.isValid(clientImportDto)){
-                importResult.append("Error: Incorrect Data!")
-                        .append(System.lineSeparator());
-                break;
+                System.out.println("Error: Incorrect Data!");
+                continue;
             }
 
-            String[] employeeNames = clientImportDto.getAppointed_employee().split("\\s+");
-            Employee employee = this.employeeRepository.findOneByFirstNameAndLastName(employeeNames[0], employeeNames[1]);
+            String[] employeeNames = clientImportDto.getEmployee().split("\\s+");
+            String fullName = String.format("%s %s", employeeNames[0], employeeNames[1]);
+
+            Employee employee = this.employeeRepository.findByFirstNameAndLastName(employeeNames[0], employeeNames[1]);
 
             Client client = this.modelMapper.map(clientImportDto, Client.class);
-            client.setFullName(String.format("%s %s",
-                    clientImportDto.getFirst_name(), clientImportDto.getLast_name()));
-
-            this.clientRepository.saveAndFlush(client);
+            client.setFullName(fullName);
+            client.setBankAccount(null);
 
             employee.getClients().add(client);
 
+            this.clientRepository.saveAndFlush(client);
+            this.employeeRepository.saveAndFlush(employee);
         }
-
-        return importResult.toString().trim();
     }
 }

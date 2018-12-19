@@ -13,7 +13,8 @@ public class AnimalAidImportDto {
     @Expose
     private BigDecimal price;
 
-    public AnimalAidImportDto(){}
+    public AnimalAidImportDto() {
+    }
 
     @Length(min = 3)
     public String getName() {

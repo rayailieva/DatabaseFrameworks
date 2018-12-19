@@ -1,5 +1,6 @@
-package ruk.domain.dtos;
+package ruk.domain.dtos.cars;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "card")
@@ -15,6 +16,7 @@ public class CardImportDto {
 
     public CardImportDto(){}
 
+    @NotNull
     public String getStatus() {
         return this.status;
     }
@@ -31,6 +33,7 @@ public class CardImportDto {
         this.accountNumber = accountNumber;
     }
 
+    @NotNull
     public String getCardNumber() {
         return this.cardNumber;
     }

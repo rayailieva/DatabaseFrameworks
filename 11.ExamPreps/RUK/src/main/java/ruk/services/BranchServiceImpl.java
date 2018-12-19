@@ -1,4 +1,4 @@
-package ruk.service;
+package ruk.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import ruk.repository.BranchRepository;
 import ruk.util.ValidatorUtil;
 
 @Service
-public class BranchServiceImpl implements BranchService {
+public class BranchServiceImpl implements BranchService{
 
     private final BranchRepository branchRepository;
     private final ModelMapper modelMapper;
@@ -23,24 +23,18 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public String importBranches(BranchImportDto[] branchImportDtos) {
-        StringBuilder importResult = new StringBuilder();
+    public void importBranches(BranchImportDto[] branchImportDtos) {
 
         for(BranchImportDto branchImportDto : branchImportDtos){
             if(!this.validatorUtil.isValid(branchImportDto)){
-               importResult.append("Error: Incorrect Data!")
-                       .append(System.lineSeparator());
-               break;
+                System.out.println("Error: Incorrect Data!");
+                continue;
             }
 
             Branch branch = this.modelMapper.map(branchImportDto, Branch.class);
-            this.branchRepository.saveAndFlush(branch);
 
-            importResult.append(String
-                    .format("Successfully imported Branch - %s.", branch.getName()))
-                    .append(System.lineSeparator());
+            this.branchRepository.saveAndFlush(branch);
         }
 
-        return importResult.toString().trim();
     }
 }

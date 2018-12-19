@@ -7,12 +7,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "animal-aid")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AnimalAidXmlImportDto {
+public class AidImportDto {
 
     @XmlElement(name = "name")
     private String name;
 
-    public AnimalAidXmlImportDto(){}
+    public AidImportDto() {
+    }
 
     public String getName() {
         return this.name;

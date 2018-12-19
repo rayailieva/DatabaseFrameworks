@@ -1,11 +1,13 @@
 package animal.domain.entities;
 
+import animal.domain.entities.base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 
 @Entity(name = "animal_aids")
-public class AnimalAid extends BaseEntity{
+public class AnimalAid extends BaseEntity {
 
     private String name;
     private BigDecimal price;

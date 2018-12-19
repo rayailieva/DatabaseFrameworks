@@ -1,6 +1,6 @@
 package animal.service;
 
-import animal.domain.dtos.VetImportRootDto;
+import animal.domain.dtos.vets.VetImportRootDto;
 
 public interface VetService {
 

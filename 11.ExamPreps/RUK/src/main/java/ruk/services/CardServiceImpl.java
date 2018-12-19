@@ -1,10 +1,10 @@
-package ruk.service;
+package ruk.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ruk.domain.dtos.CardImportDto;
-import ruk.domain.dtos.CardImportRootDto;
+import ruk.domain.dtos.cars.CardImportDto;
+import ruk.domain.dtos.cars.CardImportRootDto;
 import ruk.domain.entities.BankAccount;
 import ruk.domain.entities.Card;
 import ruk.repository.BankAccountRepository;
@@ -28,31 +28,24 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public String importCards(CardImportRootDto cardImportRootDto) {
-        StringBuilder importResult = new StringBuilder();
+    public void importCards(CardImportRootDto cardImportRootDto) {
 
         for(CardImportDto cardImportDto : cardImportRootDto.getCardImportDtos()){
             if(!this.validatorUtil.isValid(cardImportDto)){
-                importResult.append("Error: Incorrect Data!")
-                        .append(System.lineSeparator());
-                break;
-            }
-
-            BankAccount bankAccount =
-                    this.bankAccountRepository.findOneByAccountNumber(cardImportDto.getAccountNumber());
-
-            if(bankAccount == null){
-                System.out.println("error!");
+                System.out.println("Error: Incorrect Data!");
                 continue;
             }
 
+            BankAccount bankAccount = this.bankAccountRepository.findByAccountNumber(cardImportDto.getAccountNumber())
+                    .orElse(null);
+
             Card card = this.modelMapper.map(cardImportDto, Card.class);
-            card.setBankAccount(bankAccount);
+
+            if(bankAccount != null) {
+                card.setBankAccount(bankAccount);
+            }
 
             this.cardRepository.saveAndFlush(card);
-
         }
-
-        return importResult.toString().trim();
     }
 }
