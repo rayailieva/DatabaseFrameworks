@@ -16,10 +16,11 @@ public class EmployeeImportDto {
     @Expose
     private String position;
 
-    public EmployeeImportDto(){}
+    public EmployeeImportDto() {
+    }
 
-    @Length(min = 3, max = 30)
     @NotNull
+    @Length(min = 3, max = 30)
     public String getName() {
         return this.name;
     }
@@ -28,9 +29,9 @@ public class EmployeeImportDto {
         this.name = name;
     }
 
+    @NotNull
     @Min(15)
     @Max(80)
-    @NotNull
     public Integer getAge() {
         return this.age;
     }
@@ -40,6 +41,7 @@ public class EmployeeImportDto {
     }
 
     @NotNull
+    @Length(min = 3, max = 30)
     public String getPosition() {
         return this.position;
     }

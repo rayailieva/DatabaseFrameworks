@@ -56,8 +56,7 @@ public class AppController implements CommandLineRunner {
        //this.importAnimalAids();
        //this.importAnimals();
        //this.importVets();
-
-        this.importProcedures();
+       // this.importProcedures();
     }
 
 

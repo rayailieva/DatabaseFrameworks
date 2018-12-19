@@ -16,26 +16,26 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService{
 
     private static final String EMPLOYEES_FILE_CONTENT =
-    "C:\\Users\\raya\\IdeaProjects\\JavaDatabaseAdvanced\\11.ExamPreps\\AlaraRestaurant\\src\\main\\resources\\files\\employees.json";
+            System.getProperty("user.dir") + "/src/main/resources/files/employees.json";
 
-    private final EmployeeRepository employeeRepository;
-    private final PositionRepository positionRepository;
     private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
     private final FileUtil fileUtil;
     private final Gson gson;
+    private final EmployeeRepository employeeRepository;
+    private final PositionRepository positionRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, PositionRepository positionRepository, ModelMapper modelMapper, ValidationUtil validationUtil, FileUtil fileUtil, Gson gson) {
-        this.employeeRepository = employeeRepository;
-        this.positionRepository = positionRepository;
+    public EmployeeServiceImpl(ModelMapper modelMapper, ValidationUtil validationUtil, FileUtil fileUtil, Gson gson, EmployeeRepository employeeRepository, PositionRepository positionRepository) {
         this.modelMapper = modelMapper;
         this.validationUtil = validationUtil;
         this.fileUtil = fileUtil;
         this.gson = gson;
+        this.employeeRepository = employeeRepository;
+        this.positionRepository = positionRepository;
     }
 
     @Override
@@ -52,30 +52,34 @@ public class EmployeeServiceImpl implements EmployeeService {
     public String importEmployees(String employees) {
         StringBuilder importResult = new StringBuilder();
 
-        EmployeeImportDto[] employeeImportDtos =
-                this.gson.fromJson(employees, EmployeeImportDto[].class);
+        EmployeeImportDto[] employeeImportDtos = this.gson.fromJson(employees, EmployeeImportDto[].class);
 
         for(EmployeeImportDto employeeImportDto : employeeImportDtos){
 
             if(!this.validationUtil.isValid(employeeImportDto)){
-                importResult.append(Constants.INCORRECT_DATA_MESSAGE).append(System.lineSeparator());
+                importResult.append(Constants.INCORRECT_DATA_MESSAGE)
+                        .append(System.lineSeparator());
                 continue;
             }
 
-            Position positionEntity = this.positionRepository.findOneByName(employeeImportDto.getPosition()).orElse(null);
 
-            if(positionEntity == null){
-                positionEntity = new Position();
-                positionEntity.setName(employeeImportDto.getPosition());
-                this.positionRepository.saveAndFlush(positionEntity);
+            Position position = this.positionRepository
+                    .findByName(employeeImportDto.getPosition())
+                    .orElse(null);
+
+            if(position == null){
+                position = new Position();
+                position.setName(employeeImportDto.getPosition());
+                this.positionRepository.saveAndFlush(position);
             }
 
-            Employee employeeEntity = this.modelMapper.map(employeeImportDto, Employee.class);
-            employeeEntity.setPosition(positionEntity);
-            this.employeeRepository.saveAndFlush(employeeEntity);
+            Employee employee = this.modelMapper.map(employeeImportDto, Employee.class);
+            employee.setPosition(position);
+            this.employeeRepository.saveAndFlush(employee);
 
-            importResult.append(String.format("Record %s successfully imported", employeeEntity.getName()))
+            importResult.append(String.format("Record %s successfully imported.", employee.getName()))
                     .append(System.lineSeparator());
+
         }
 
         return importResult.toString().trim();

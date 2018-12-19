@@ -18,8 +18,8 @@ public class ItemImportDto {
 
     public ItemImportDto(){}
 
-    @Length(min = 3, max = 30)
     @NotNull
+    @Length(min = 3, max = 30)
     public String getName() {
         return this.name;
     }
@@ -28,8 +28,8 @@ public class ItemImportDto {
         this.name = name;
     }
 
-    @DecimalMin("0.01")
     @NotNull
+    @DecimalMin("0.01")
     public BigDecimal getPrice() {
         return this.price;
     }

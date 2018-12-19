@@ -22,20 +22,25 @@ public class CategoryServiceImpl implements CategoryService {
         StringBuilder exportResult = new StringBuilder();
 
         List<Category> categories =
-                this.categoryRepository.exportCategories();
+                this.categoryRepository.exportCatgories();
 
         categories.forEach(category -> {
-            exportResult.append(String.format("Category: %s", category.getName()))
+            exportResult
+                    .append(String.format("Category: %s", category.getName()))
                     .append(System.lineSeparator());
+
             category.getItems().forEach(item -> {
-                exportResult.append(String.format("--- Item Name: %s", item.getName()))
+                exportResult
+                        .append(String.format("--- Item Name: %s", item.getName()))
                         .append(System.lineSeparator())
                         .append(String.format("--- Item Price: %.2f", item.getPrice()))
-                        .append(System.lineSeparator())
                         .append(System.lineSeparator());
+                exportResult.append(System.lineSeparator());
             });
+
+            exportResult.append(System.lineSeparator());
         });
 
-         return exportResult.toString().trim();
+        return exportResult.toString().trim();
     }
 }

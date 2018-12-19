@@ -16,8 +16,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             "FROM alararestaurant.domain.entities.Order o " +
             "JOIN o.employee e " +
             "JOIN e.position p " +
-            "WHERE p.name = :positionName " +
-            "ORDER BY e.name, o.id"
+            "WHERE p.name = :position " +
+            "ORDER BY e.name, o.id "
     )
-    List<Order> exportOrders(@Param(value = "positionName") String positionName);
+    List<Order> exportOrders(@Param("position") String position);
 }

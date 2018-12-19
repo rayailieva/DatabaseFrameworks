@@ -1,4 +1,4 @@
-package alararestaurant.domain.dtos;
+package alararestaurant.domain.dtos.orders;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
